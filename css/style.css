@@ -1,0 +1,230 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Lucida Sans', sans-serif;
+    letter-spacing: 0.2rem;
+}
+
+a {
+    text-decoration: none;
+    text-transform: none;
+}
+
+img{
+    width: 3rem;
+    height: 11rem;
+}
+
+footer {
+    background-color: rgb(44, 42, 42);
+}
+
+.mainClase {
+    background-color: black;
+}
+
+.instagramText {
+    color: #fff;
+    padding: 1rem;
+}
+
+.divLogo {
+    border: solid #fff;
+    background-color: rgb(44, 42, 42);
+    color:#fff;
+    border-radius: 20px;
+    margin: 0.5rem;
+    margin-right: 3.5rem;
+    width: 20rem;
+    height: 6rem;
+    display: inline-block;
+}
+
+.btnFinalizar:hover {
+    background-color: rgba(247, 247, 0, 0.356);
+}
+
+
+.logo {
+margin: auto;
+font-size: 2rem;
+padding: 1rem;
+text-align: center;
+justify-content: center;
+}
+
+.btnFinalizar {
+    color: #fff;
+    background-color: rgb(44, 42, 42);
+    font-size: 2rem;
+    margin: 2rem;
+    margin-left: 4rem;
+    text-align: center;
+    border: solid rgb(233, 211, 14);
+    border-radius: 15px;
+
+}
+
+
+#agusCard{
+    display: inline-block;
+    margin: 2rem;
+    color: #000;
+}
+
+.carrito {
+    display: block;
+    margin: auto;
+}
+
+.imgInsta {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin: auto;
+}
+
+.imgInsta:hover {
+    background: rgba(0, 0, 0, 0.377);
+}
+
+.divInsta {
+    display: inline-block;
+    width: 6rem;
+    height: 3.5rem;
+    margin: 3.5rem;
+}
+
+/*header y Menu desplegable*/
+
+#btn-menu {
+    display: none;
+}
+
+.iconoMenu {
+    height: 40px;
+    width: 40px;
+}
+
+header {
+    font-size: 25px;
+    width: 100%;
+    height: 100%;
+    background: rgb(233, 211, 14);
+    }
+    
+header label {
+    display: none;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+header label:hover {
+    cursor: pointer;
+    background: rgba(0,0,0,0.3);
+}
+
+.menu {
+    margin-left: 4rem;
+} 
+
+.menu li a {
+    display: block;
+    padding: 20px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu ul {
+    list-style:none;
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.menu ul li {
+    background-color: rgb(233, 211, 14);
+}
+
+.menu ul a {
+    display: block;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 17px;
+    padding: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.menu ul li {
+    position: relative;
+    float:left;
+    margin: 0%;
+    padding: 0%;
+}
+/* 
+.menu ul li:hover {
+    background: rgba(138, 138, 138, 0.562);
+} */
+
+.menu ul ul {
+    display: none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:#eee;
+    padding:0;
+}
+
+.menu ul ul li {
+    float: none;
+    width: 175px;
+}
+
+.menu ul ul a {
+    line-height: 120%;
+    padding: 10%;
+}
+
+ul.horizontal li {
+    display: block;
+    float: left;
+    padding: 0%;
+    margin: 0%;
+    
+}
+
+.menu ul li:hover > ul {
+    display:block;
+}
+/*fin del header*/
+
+/*Responsive*/
+@media (max-width:768px) {
+    header label {
+        display: block;
+    }
+    
+    .menu {
+        position: absolute;
+        background: #fff;
+        width: 50%;
+        margin-left: -50%;
+        transition: all 0.5s;
+    }
+    
+    .menu ul {
+     flex-direction: column;
+    }
+
+    .menu li {
+        border-top: 2px solid #fff;
+    }
+
+    #btn-menu:checked ~ .menu {
+        margin: 0;
+    }
+}
