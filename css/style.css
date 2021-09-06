@@ -85,7 +85,8 @@ justify-content: center;
 }
 
 .imgInsta:hover {
-    background: rgba(0, 0, 0, 0.377);
+    background: rgba(255, 255, 255, 0.377);
+    border-radius: 5px;
 }
 
 .divInsta {
@@ -151,6 +152,8 @@ header label:hover {
 .menu ul a {
     display: block;
     color: rgb(0, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 1rem;
     text-decoration: none;
     font-weight: 400;
     font-size: 17px;

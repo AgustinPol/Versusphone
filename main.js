@@ -55,15 +55,6 @@ if (o1.productPrice < o2.productPrice) {
 
 //DECLARO VARIABLE MOSTRAR(RELACIONADA CON LAS CARDS)//
 let mostrar="";
-
-//Evento  //
-// let botonCarrito = document.getElementById("btn-carrito");
-// botonCarrito.addEventListener("submit", verCarrito);
-
-// function verCarrito(e) {
-//   e.preventDefault();
-//   console.log("Formulario Enviado");
-// }
  
 //GENERAMOS LAS CARDS DEL HTML, CON JAVASCRIPT//
 for(let i=0;i<productos.length;i++){
@@ -82,8 +73,6 @@ for(let i=0;i<productos.length;i++){
     </div>
 </div>`
 }
-//DECLARO LET CONTADOR//
-let contador=0;
 
 //LLAMAMOS POR ID A LAS CARD Y LAS INYECTAMOS EN EL HTML//
 document.getElementById("agusCard").innerHTML=mostrar;
@@ -107,9 +96,13 @@ function agregarAlCarrito(productName){
   // CALCULAR TOTAL DEL CARRITO//
   document.getElementById("contador-carrito").innerHTML = carrito.length;
   console.log(carrito);
-
 }
 
+//VER CARRITO
+const buttonCarrito = document.getElementById("btn-carrito");
+buttonCarrito.addEventListener("click", () => {
+  alert(`En tu carrito tienes ${carrito.length} productos`)
+})
 
 //LOCALSTORAGE
 localStorage.carrito = JSON.stringify(carrito);
@@ -145,22 +138,6 @@ function imprimirSeleccion(e){
     console.log(e.target)
 }
 
-
-// Función 1//
-// function inicioCompra() {
- 
-//     for (let i = 0; i < 1; i++) {
-//     alert("Bienvenido a Versusphone-X! Gracias por interesarse en nuestros productos!");
-//     let confirmarCompra = confirm("¿Te interesa comprar algun producto?");
-//     if (confirmarCompra) {
-//     alert("¡Perfecto, sigamos!");
-//     i++;
-//   } else {
-//     alert("¡Será en otra oportunidad, gracias por visitarnos!");
-//     i--;
-//   }
-//  }
-// }
 
 //Función 2//
 
@@ -315,7 +292,6 @@ console.log(clientes);
 
 // LLAMADO DE FUNCIONES//
 for (let i = 0; i < 1; i++) {
-// inicioCompra();
 // elijoProducto();
 // cuantasUnidades();
 // calculoCuotas();
