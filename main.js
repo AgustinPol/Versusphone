@@ -24,17 +24,17 @@ class Producto{
 let productos=[];
 
 //PUSHEO LA INFO DE CADA CARD/PRODUCTO//
-const producto1 = new Producto("Smartwatch series 3", "Apple", 32999, "../images/Smartwatch-apple.webp");
+const producto1 = new Producto("Smartwatch series 3", "Apple", 32999, "images/Smartwatch-apple.webp");
 productos.push(producto1);
-const producto2 = new Producto("Airpods Pro","Apple", 32999, "../images/Airpod-Pro.webp");
+const producto2 = new Producto("Airpods Pro","Apple", 32999, "images/Airpod-Pro.webp");
 productos.push(producto2);
-const producto3 = new Producto("Airpods Básicos", "Apple" , 18999, "../images/airpodscomun.webp");
+const producto3 = new Producto("Airpods Básicos", "Apple" , 18999, "images/airpodscomun.webp");
 productos.push(producto3);
-const producto4 = new Producto("Smartwatch", "Xiaomi", 6999, "../images/xiaomi-smartwatch.webp");
+const producto4 = new Producto("Smartwatch", "Xiaomi", 6999, "images/xiaomi-smartwatch.webp");
 productos.push(producto4);
-const producto5 = new Producto("Airpods Max","Apple", 129999, "../images/airpods-max.webp");
+const producto5 = new Producto("Airpods Max","Apple", 129999, "images/airpods-max.webp");
 productos.push(producto5);
-const producto6 = new Producto("Smartwatch Sense", "Fitbit", 46999, "../images/smartwatch-fitbit.webp");
+const producto6 = new Producto("Smartwatch Sense", "Fitbit", 46999, "images/smartwatch-fitbit.webp");
 productos.push(producto6);
 
 //CREO CONSTANTE BASE DE DATOS PARA PODER UTILIZAR EL CARRITO//
