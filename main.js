@@ -1,9 +1,5 @@
 //CREO ARRAY CARRITO//
 let carrito = [];
-if(localStorage.carrito != null) {
-  carrito = JSON.parse(localStorage.carrito);
-  document.getElementById("contador-carrito").innerHTML = carrito.length;
-}
 
 //DECLARO ESTAS VARIABLES FUERA DE LAS FUNCIONES//
 let totalCompra;
@@ -84,7 +80,6 @@ document.getElementById("agusCard").innerHTML=mostrar;
   }
 
 //Función0 AGREGAR AL CARRITO//
-
 function agregarAlCarrito(productName){
   const productoEncontrado = baseDeDatos.find(productos => productos.productName === productName);
   if(productoEncontrado != undefined){
@@ -92,7 +87,6 @@ function agregarAlCarrito(productName){
   }else{
       alert("algo falló");
   }
-
   // CALCULAR TOTAL DEL CARRITO//
   document.getElementById("contador-carrito").innerHTML = carrito.length;
   console.log(carrito);
@@ -100,30 +94,21 @@ function agregarAlCarrito(productName){
 
 //VER CARRITO
 const buttonCarrito = document.getElementById("btn-carrito");
+const muestroProducto = document.createElement("p")
 buttonCarrito.addEventListener("click", () => {
-  alert(`En tu carrito tienes ${carrito.length} productos`)
-})
 
-//LOCALSTORAGE
-localStorage.carrito = JSON.stringify(carrito);
-document.getElementById("contador-carrito").innerHTML = carrito.length;
-//----------------------------------------------------------------------//
+})
 
 //LLAMANDO A ID SELECT CUOTAS
 const cuotasId = document.getElementById('selectCuotas');
-
 //CREO ARRAY
 const cuotas = ['1 cuota', '3 cuotas', '6 cuotas'];
-
 //CREO ELEMENTO SELECT
 const select = document.createElement('select');
-
 //INGRESO ATRIBUTOS AL SELECT
 select.setAttribute('class', 'btn btn-secondary');
-
 //METO SELECT EN cuotasId
 cuotasId.appendChild(select);
-
 //RECORREMOS ARRAY CON forEach
 cuotas.forEach((cuota, index) => {
     const option = document.createElement('option');
@@ -137,105 +122,6 @@ function imprimirSeleccion(e){
     //DISPARA EL EVENTO
     console.log(e.target)
 }
-
-
-//Función 2//
-
-// function elijoProducto() 
-// {
-//     for (let i = 0; i <= 1; i++)
-//    {
-//     elegir = parseInt(prompt("Elija su producto: Smartwatch Apple(1)/Airpods Pro(2)/Airpods Básicos(3)/Smartwatch Xiaomi(4)/Airpods Max Apple(5)/Smartwatch Fitbit Sense(6)"));
-    
-//     if (elegir === 1) {
-//       alert("Elegiste el Smartwatch Apple, tiene un valor de $32999 por unidad.");
-//       producto = producto1.productPrice;
-//       i++;
-//     } else if (elegir === 2) {
-//       alert("Elegiste los Airpods Pro, tiene una valor de $32999 por unidad");
-//       producto = producto2.productPrice;
-//       i++;
-//     } else if (elegir === 3) {
-//       alert("Elegiste los Airpods Básicos, tiene un valor de $18999 por unidad");
-//       producto = producto3.productPrice;
-//       i++;
-//     } else if (elegir === 4) {
-//       alert("Elegiste el Smartwatch de Xiaomi. ¡está en oferta! Tiene un valor de $6999 por unidad");
-//       producto = producto4.productPrice;
-//       i++;
-//     } else if (elegir === 5) {
-//       alert("Elegiste los Apple Airpods Max, tiene un valor de $129999 por unidad")
-//       producto = producto4.productPrice;
-//       i++;
-//     } else if (elegir = 6) {
-//       alert("Elegiste el Smartwatch Fitbit Sense, tiene un valor de $46999 por unidad")
-//       producto = producto6.productPrice;
-//       i++;
-//     } else {
-//       alert("Datos ingresados son incorrectos");
-//       i--;
-//     }
-//    }
-// }
-
-// Función 3//
-// function cuantasUnidades() {
-  
-//   do {
-//   unidades = parseInt(prompt("Ingrese la cantidad de unidades que desea"));
-//   totalCompra = unidades*producto;
-// } while (isNaN(unidades)); 
-//   alert(`El valor de su compra es ${totalCompra}`);
-//   return(totalCompra)
-// }
-//Función 4//
-// function calculoCuotas() {
-
-//   for (let i = 0; i <= 1; i++) {
-//   let producto = totalCompra;
-//   let cuantasCuotas = parseInt(prompt("¿En cuantas cuotas desea abonar? (1,3,6)"));
-//     if (cuantasCuotas == 1 && typeof(producto) != "string") {
-//       alert(`deberás abonar ${cuantasCuotas} cuotas de $ ${producto / 1}`);
-//       i++;
-//   } else if (cuantasCuotas == 3 && typeof(producto) != "string") {
-//       alert(`deberás abonar ${cuantasCuotas} cuotas de $ ${producto / 3}`);
-//       i++;
-//   } else if (cuantasCuotas == 6 && typeof(producto) != "string") {
-//       alert(`deberás abonar ${cuantasCuotas} cuotas de $ ${producto / 6}`);
-//       i++;
-//   } else {
-//       alert("Disculpe, datos erroneos")
-//       i--;
-//   }
-// }
-// }
-
-//FUNCION 5//
-// function datosEnvioCliente() {
-// let confirmacion = confirm("por favor, ingrese nombre, apellido, dirección, celular y horario en el que desea recibir su compra.");
-// console.log(confirmacion);
-// if (confirmacion) {
-//   for (let i = 0; i <= 1; i++) {
-//   let nombre = prompt("Ingrese su nombre");
-//   let apellido = prompt("Ingrese su apellido");
-//   let direccion = prompt("Ingrese la dirección donde enviaremos su compra");
-//   let celular = prompt("Ingrese un celular para contactarnos");
-//   let horarioEntrega = prompt("Ingrese en que horario desea recibir su producto (MAÑANA/TARDE)");
-  
-//   //PUSHEO LOS NUEVOS CLIENTES//
-//   clientes.push(new Cliente(nombre, apellido, direccion, celular, horarioEntrega, unidades));
-//   alert(`Muchas gracias por su compra ${nombre}, ya guardamos su información para realizar la entrega!`);
-//   i++;
-//   }
-
-// }
-// else {
-//   alert("Para finalizar la compra necesitamos sus datos!");  
-//   i--;
-// }
-// return(clientes)
-
-// }
 
 // OBJETO CONSTRUCTOR PARA CLIENTES//
 class Cliente{
@@ -255,7 +141,8 @@ const clientes = [];
 //ORDENO CLIENTES//
 clientes.sort();
 
-const capturar = () => {
+//Función para recolectar datos clientes
+const infoCliente = () => {
   let nombre = document.getElementById("nombre").value;
   let apellido = document.getElementById("apellido").value;
   let edad = document.getElementById("edad").value;
@@ -281,20 +168,3 @@ const capturar = () => {
 
 //MUESTRO LOS CLIENTES CREADOS//
 console.log(clientes);
-
-//FUNCION FINALIZAR COMPRA/MODAL
-// function finalizarCompra() {
-//   if (onclick.finalizarCompra()) {
-//     getElementById("myModal")
-//   }
-// }
-
-
-// LLAMADO DE FUNCIONES//
-for (let i = 0; i < 1; i++) {
-// elijoProducto();
-// cuantasUnidades();
-// calculoCuotas();
-// datosEnvioCliente();
-}
-
