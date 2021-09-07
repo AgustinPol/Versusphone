@@ -4,118 +4,113 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Versusphone</title>
+    <title>VersusPhone</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="main.js" defer></script>
 </head>
 
 <body>
-<!--Comienza Header-->  
+<!--COMIENZA HEADER-->  
 <header>
   <div class="container-lg">
     <div class="row">
       <!--Divido el Header en dos columnas(col-1)-->
-      <div class="col-lg-6">
-          <input type="checkbox" id="btn-menu">
-          <label for="btn-menu"><img class="iconoMenu" src="images/iconomenu.png" alt="iconomenu"></label>
-          <!--Navbar-->
-          <nav class="menu">
-            <ul class="navmenu horizontal">
-              <li><a class="btn-outline-dark" href="index.html">Home</a></li>
-              <li><a class="btn-outline-dark" href="pages/nosotros.html">Nosotros</a></li>
-            </ul>
-          <!--Carrito-->
-            <div class="carrito">
-              <form class="d-flex justify-content-md-start">
-                <button id="btn-carrito" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="bi-cart-fill me-1"></i>
-                Carrito
-                <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
-              </form>
-            </div>
-          </nav>
-    </div>
-    <!--Logo(col-2)-->
-        <div class="col-lg-6 d-flex justify-content-end">
-          <div class="divLogo">
-            <h1 class="logo">Versusphone</h1>
-          </div>
+        <div class="col-lg-6">
+            <input type="checkbox" id="btn-menu">
+            <label for="btn-menu"><img class="iconoMenu" src="images/iconomenu.png" alt="iconomenu"></label>
+            <!--Navbar-->
+            <nav class="menu">
+              <ul class="navmenu horizontal">
+                <li><a class="btn-outline-dark" href="index.html">Home</a></li>
+                <li><a class="btn-outline-dark" href="pages/nosotros.html">Nosotros</a></li>
+              </ul>
+            <!--Carrito-->
+              <div class="carrito">
+                <form class="d-flex justify-content-md-start">
+                  <button id="btn-carrito" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="bi-cart-fill me-1"></i>
+                    Carrito
+                    <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                  </button>
+                </form>
+              </div>
+            </nav>
         </div>
+             <!--Logo(col-2)-->
+               <div class="col-lg-6 d-flex justify-content-end">
+                 <div class="divLogo">
+                   <h1 class="logo">VersusPhone</h1>
+                 </div>
+               </div>
     </div>
-  </div>
-     
+  </div>    
 </header>
 
+<!-- FIN DE HEADER Y COMIENZO DE MAIN -->
 <main class="mainClase">
-<div class="container-lg">
-<div class="row">
+  <div class="container-lg">
+    <div class="row">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+              <div class="modal-body row">
+              <!--Este es el formulario-->
+                <div class="col-lg-6">
+                  <form id="formulario">
+                    <label for="nombre">Nombre:</label><br>
+                      <input type="text" id="nombre" name="nombre"><br>
+                        <label for="apellido">Apellido:</label><br>
+                      <input type="text" id="apellido" name="apellido"><br>
+                        <label for="edad">Edad:</label><br>
+                      <input type="text" id="edad" name="edad"><br>
+                        <label for="direccion">Dirección</label><br>
+                      <input type="text" id="direccion" name="direccion"><br>
+                        <label for="email">Email:</label><br>
+                      <input type="text" id="email" name="email"><br>
+                        <label for="telefono">Tel(8 caractéres):</label><br>
+                      <input type="text" id="telefono" name="telefono"><br>
+                        <button class="btn btn-secondary" type="button" onclick="infoCliente()">Finalizar compra</button>
+                  </form> 
+                </div>
+                  <!--Este es el select de las cuotas-->
+                  <div class="col-lg-6" id="selectCuotas">
+                  </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body row">
-        <!--Este es el formulario-->
-        <div class="col-lg-6">
-        <form id="formulario">
-          <label for="nombre">Nombre:</label><br>
-          <input type="text" id="nombre" name="nombre"><br>
-          <label for="apellido">Apellido:</label><br>
-          <input type="text" id="apellido" name="apellido"><br>
-          <label for="edad">Edad:</label><br>
-          <input type="text" id="edad" name="edad"><br>
-          <label for="direccion">Dirección</label><br>
-          <input type="text" id="direccion" name="direccion"><br>
-          <label for="email">Email:</label><br>
-          <input type="text" id="email" name="email"><br>
-          <label for="telefono">Tel(8 caractéres):</label><br>
-          <input type="text" id="telefono" name="telefono"><br>
-          <button class="btn btn-secondary" type="button" onclick="infoCliente()">Finalizar compra</button>
-        </form> 
-      </div>
-        
-      <!--Este es el select de las cuotas-->
-        <div class="col-lg-6" id="selectCuotas">
-         
-          <div id="muestro-producto">
-
+                   <!-- Elementos del carrito -->
+                   <ul id="listaCarrito" class="list-group"></ul>
+                   <hr>
+            </div>
+                  <!--Este es el modal-footer-->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir  comprando</button>
+                   <button type="button" class="btn btn-primary">  Finalizar</button>
+                  </div>
           </div>
+        </div>
       </div>
-    </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
-        <button type="button" class="btn btn-primary">  Finalizar</button>
-      </div>
-    </div>
+                  <!--Esta es la card-->
+                  <div id="agusCard">
 
-   </div>
+                  </div>
+                  <!--Fin de card-->
+    </div>
   </div>
-
-         <!--Esta es la card-->
-         <div class="col-lg-6"></div>
-           <div id="agusCard">
-
-           </div>
-         </div>
-         <!--Fin de card-->
-    </div>
   
 </main>
 
 
 <!--Este es el footer-->
 <footer>
-  <h3 class="instagramText">Seguínos en Instagram:</h3>
-<div class="divInsta">
-  <img class="imgInsta" src="images/instagramimg.png" alt="icono-instagram">
-</div>
+        <h3 class="instagramText">Seguínos en Instagram:</h3>
+      <div class="divInsta">
+        <img class="imgInsta" src="images/instagramimg.png" alt="icono-instagram">
+      </div>
 </footer>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">

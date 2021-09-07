@@ -53,37 +53,32 @@ if (o1.productPrice < o2.productPrice) {
 let mostrar="";
  
 //GENERAMOS LAS CARDS DEL HTML, CON JAVASCRIPT//
-for(let i=0;i<productos.length;i++){
+baseDeDatos.forEach((productos) => {
   mostrar+=`<div id="agusCard" class="card" style="width: 18rem;">
-  <img src="${productos[i].productImg}" class="card-img-top" alt="imagen-producto">
+  <img src="${productos.productImg}" class="card-img-top" alt="imagen-producto">
   <div class="card-body">
-    <h5 class="card-title">${productos[i].productName}</h5>
-    <p class="card-text">${productos[i].productBrand}</p>
-    <p class="card-text">$${productos[i].productPrice}</p>
+    <h5 class="card-title">${productos.productName}</h5>
+    <p class="card-text">${productos.productBrand}</p>
+    <p class="card-text">$${productos.productPrice}</p>
     <!-- Product actions-->
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" 
-        onclick="agregarAlCarrito('${productos[i].productName}')">Agregar al carrito</a>
+        onclick="agregarAlCarrito('${productos.productName}')">Agregar al carrito</a>
         </div>
     </div>
     </div>
 </div>`
-}
+})
 
 //LLAMAMOS POR ID A LAS CARD Y LAS INYECTAMOS EN EL HTML//
 document.getElementById("agusCard").innerHTML=mostrar;
 
-  let clases = document.getElementsByClassName("productos");
+//Función AGREGAR AL CARRITO//
 
-  for(let i=0; i<clases.length;i++){
-      console.log(clases[2]);
-  }
-
-//Función0 AGREGAR AL CARRITO//
 function agregarAlCarrito(productName){
-  const productoEncontrado = baseDeDatos.find(productos => productos.productName === productName);
-  if(productoEncontrado != undefined){
-      carrito.push(productoEncontrado);
+  const productoAgregado = baseDeDatos.find(productos => productos.productName === productName);
+  if(productoAgregado != undefined){
+      carrito.push(productoAgregado);
   }else{
       alert("algo falló");
   }
@@ -92,14 +87,19 @@ function agregarAlCarrito(productName){
   console.log(carrito);
 }
 
-//VER CARRITO
-const buttonCarrito = document.getElementById("btn-carrito");
-const muestroProducto = document.createElement("p")
-buttonCarrito.addEventListener("click", () => {
+//VER PRODUCTOS AGREGADOS AL CARRITO:
+//LLAMO ID DEL DIV DONDE QUIERO CREAR ELEMENTOS
+const miLista = document.getElementById("listaCarrito");
+//CREO CONST DE LOS LI QUE QUIERO CREAR
+const itemLista = document.createElement("li");
+//AGREGO ATRIBUTOS A MIS LI
+itemLista.classList.add('list-group-item', 'text-right', 'mx-2');
+//METO LI EN LISTA CARRITO
+miLista.appendChild(itemLista);
+//RECORRO ARRAY DE 
+console.log(productoAgregado)
 
-})
-
-//LLAMANDO A ID SELECT CUOTAS
+//ESTA ES LA SECCIÓN DE LAS CUOTAS
 const cuotasId = document.getElementById('selectCuotas');
 //CREO ARRAY
 const cuotas = ['1 cuota', '3 cuotas', '6 cuotas'];
@@ -165,6 +165,3 @@ const infoCliente = () => {
     console.log("Disculpe, o su teléfono no es válido, o no está en su mayoría de edad para continuar.");
   }
 }
-
-//MUESTRO LOS CLIENTES CREADOS//
-console.log(clientes);
