@@ -56,8 +56,8 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title btn btn-secondary" id="exampleModalLabel">Este es tu carrito</h5>
+              <button type="button" class="btn-close btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
               <div class="modal-body row">
               <!--Este es el formulario-->
@@ -75,33 +75,38 @@
                       <input type="text" id="email" name="email"><br>
                         <label for="telefono">Tel(8 caractéres):</label><br>
                       <input type="text" id="telefono" name="telefono"><br>
-                        <button class="btn btn-secondary" type="button" onclick="infoCliente()">Finalizar compra</button>
+                        <button class="btn btn-outline-dark" type="button" onclick="infoCliente()">Enviar datos cliente</button>
                   </form> 
                 </div>
                   <!--Este es el select de las cuotas-->
                   <div class="col-lg-6" id="selectCuotas">
-                  </div>
-
-                   <!-- Elementos del carrito -->
-                   <ul id="listaCarrito" class="list-group"></ul>
-                   <hr>
-            </div>
+                  
+                  </div>  
                   <!--Este es el modal-footer-->
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir  comprando</button>
-                   <button type="button" class="btn btn-primary">  Finalizar</button>
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Seguir  comprando</button>
                   </div>
+            </div> 
           </div>
         </div>
-      </div>
-                  <!--Esta es la card-->
-                  <div id="agusCard">
-
-                  </div>
-                  <!--Fin de card-->
+      </div>         
     </div>
   </div>
   
+<!--ACA MOSTRAREMOS EL CARRITO-->
+ <!-- Elementos del carrito -->
+ <div id="listaCarrito" class="divCarrito">
+ 
+</div>
+   <!--ACA VAN LAS CARDS-->
+   <div class="container-lg">
+    <div class="row">
+      <div class="row-lg-6" id="agusCard">
+
+      </div>
+    </div>
+  </div>
+  <!--FIN DE LAS CARDS-->
 </main>
 
 

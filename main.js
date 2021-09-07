@@ -73,8 +73,8 @@ baseDeDatos.forEach((productos) => {
 //LLAMAMOS POR ID A LAS CARD Y LAS INYECTAMOS EN EL HTML//
 document.getElementById("agusCard").innerHTML=mostrar;
 
+//--------------------------------------------------------//
 //Función AGREGAR AL CARRITO//
-
 function agregarAlCarrito(productName){
   const productoAgregado = baseDeDatos.find(productos => productos.productName === productName);
   if(productoAgregado != undefined){
@@ -87,18 +87,7 @@ function agregarAlCarrito(productName){
   console.log(carrito);
 }
 
-//VER PRODUCTOS AGREGADOS AL CARRITO:
-//LLAMO ID DEL DIV DONDE QUIERO CREAR ELEMENTOS
-const miLista = document.getElementById("listaCarrito");
-//CREO CONST DE LOS LI QUE QUIERO CREAR
-const itemLista = document.createElement("li");
-//AGREGO ATRIBUTOS A MIS LI
-itemLista.classList.add('list-group-item', 'text-right', 'mx-2');
-//METO LI EN LISTA CARRITO
-miLista.appendChild(itemLista);
-//RECORRO ARRAY DE 
-console.log(productoAgregado)
-
+//-------------------------------------------------------------------//
 //ESTA ES LA SECCIÓN DE LAS CUOTAS
 const cuotasId = document.getElementById('selectCuotas');
 //CREO ARRAY
@@ -106,7 +95,7 @@ const cuotas = ['1 cuota', '3 cuotas', '6 cuotas'];
 //CREO ELEMENTO SELECT
 const select = document.createElement('select');
 //INGRESO ATRIBUTOS AL SELECT
-select.setAttribute('class', 'btn btn-secondary');
+select.setAttribute('class', 'btn btn-outline-dark');
 //METO SELECT EN cuotasId
 cuotasId.appendChild(select);
 //RECORREMOS ARRAY CON forEach
@@ -122,6 +111,15 @@ function imprimirSeleccion(e){
     //DISPARA EL EVENTO
     console.log(e.target)
 }
+
+select.addEventListener('change',
+  function(){
+    let selectedOption = this.options[select.selectedIndex];
+    const p = document.createElement('p');    
+    p.textContent = `abonarías ${selectedOption.text} de ...`;
+    cuotasId.appendChild(p);
+});
+//----------------------------------------------------------//
 
 // OBJETO CONSTRUCTOR PARA CLIENTES//
 class Cliente{
@@ -141,7 +139,7 @@ const clientes = [];
 //ORDENO CLIENTES//
 clientes.sort();
 
-//Función para recolectar datos clientes
+//FUNCIÓN PARA RECOLECTAR LOS DATOS DEL CLIENTE//
 const infoCliente = () => {
   let nombre = document.getElementById("nombre").value;
   let apellido = document.getElementById("apellido").value;
