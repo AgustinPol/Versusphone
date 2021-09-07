@@ -59,7 +59,7 @@ baseDeDatos.forEach((arrayProductos) => {
     <p class="card-text">$${arrayProductos.productPrice}</p>
     <!-- Product actions-->
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" 
+        <div class="text-center"><a class="btn btn-outline-dark mt-auto botonCarro" href="#" 
         onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
         </div>
     </div>
@@ -76,6 +76,10 @@ function agregarAlCarrito(productName){
   const productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
       arrayCarrito.push(productoAgregado);
+      const div1 = document.getElementById('listaCarrito');
+      const newParrafo = document.createElement('p');
+      newParrafo.textContent = ` ${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)}`;
+      div1.appendChild(newParrafo);
   }else{
       alert("algo falló");
   }
@@ -85,12 +89,6 @@ function agregarAlCarrito(productName){
 }
 //-------------------------------------------------------------------//
 
-let mostrarCarro="";
-arrayCarrito.forEach(arrayProductos => {
-  mostrarCarro+=`<p>${arrayProductos.productName} - ${arrayProductos.prod}</p>`
-})
-document.getElementById("listaCarrito").innerHTML=mostrarCarro;
-//-------------------------------------------------------------------//
 //ESTA ES LA SECCIÓN DE LAS CUOTAS
 const cuotasId = document.getElementById('selectCuotas');
 //CREO ARRAY
@@ -166,3 +164,4 @@ const infoCliente = () => {
     console.log("Disculpe, o su teléfono no es válido, o no está en su mayoría de edad para continuar.");
   }
 }
+
