@@ -1,7 +1,6 @@
 //CREO ARRAY CARRITO//
 let arrayCarrito = [];
 
-
 //Objeto Clase DOM PARA GENERAR LOS PRODUCTOS//
 class Producto{
   constructor(productName,productBrand,productPrice,productImg,category){
@@ -146,7 +145,7 @@ const infoCliente = () => {
 
 /**
  * @param {*} filtro
- * El filtro es para filtrar los productos 
+ * Filtro los productos
  */
  function filtrarProductos(filtro = 'default') {
   let nuevosProductos = (filtro !== "default") ? 
