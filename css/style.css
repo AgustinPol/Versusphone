@@ -67,13 +67,6 @@ justify-content: center;
 
 }
 
-.divCarrito {
-    width: 100%;
-    height: 20rem;
-    background-color: #fff;
-    color: black;
-}
-
 /*ID DE LAS CARDS*/
 #agusCard{
     display: inline-block;
