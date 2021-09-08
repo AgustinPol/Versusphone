@@ -13,6 +13,17 @@ class Producto{
   //DECLARO ARRAY PRODUCTOS//
   let arrayProductos=[];
   
+  //ORDENAMIENTO DE ARRAY "PRODUCTOS", SE ORDENARON POR PRECIO, DE MENOR A MAYOR.//
+arrayProductos.sort((o1, o2) => {
+  if (o1.productPrice < o2.productPrice) {
+    return -1;
+  } else if (o1.productPrice > o2.productPrice) {
+      return 1 ; 
+    } else {
+      return 0;
+    }
+  
+  })
   //PUSHEO LA INFO DE CADA CARD/PRODUCTO//
   const producto1 = new Producto("Smartwatch series 3", "Apple", 32999, "images/Smartwatch-apple.webp", "smartwatch");
   arrayProductos.push(producto1);
@@ -30,14 +41,4 @@ class Producto{
   //CREO CONSTANTE BASE DE DATOS PARA PODER UTILIZAR EL CARRITO//
   const baseDeDatos = [producto1, producto2, producto3, producto4, producto5, producto6];
 
-  //ORDENAMIENTO DE ARRAY "PRODUCTOS", SE ORDENARON POR PRECIO, DE MENOR A MAYOR.//
-arrayProductos.sort((o1, o2) => {
-    if (o1.productPrice < o2.productPrice) {
-      return -1;
-    } else if (o1.productPrice > o2.productPrice) {
-        return 1 ; 
-      } else {
-        return 0;
-      }
-    
-    })
+  

@@ -62,8 +62,6 @@ select.addEventListener('change',
 });
 //----------------------------------------------------------//
 
-
-
 /**
  * @param {*} filtro
  * Filtro los productos
@@ -77,14 +75,14 @@ select.addEventListener('change',
   let mostrar=``;
   nuevosProductos.forEach((arrayProductos) => {
     mostrar+=`<div id="agusCard" class="card" style="width: 18rem;">
-    <img src="${arrayProductos.productImg}" class="card-img-top" alt="imagen-producto">
+    <img src="${arrayProductos.productImg}" class="card-img-top img-fluid" alt="imagen-producto">
     <div class="card-body">
       <h5 class="card-title">${arrayProductos.productName}</h5>
       <p class="card-text">${arrayProductos.productBrand}</p>
       <p class="card-text">$${arrayProductos.productPrice}</p>
       <!-- Product actions-->
       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-          <div class="text-center"><a class="btn btn-outline-dark mt-auto botonCarro" href="#" 
+          <div class="text-center"><a class="btn btn-outline-dark mt-auto" 
           onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
           </div>
       </div>

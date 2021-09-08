@@ -1,6 +1,6 @@
 /*TAGS-DEFAULT*/
 body {
-    background-color: #000;
+    background-color: #000!important;
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
     letter-spacing: 0.2rem;
@@ -20,6 +20,9 @@ footer {
     background-color: rgb(44, 42, 42);
 }
 
+aside {
+    color: #fff;
+}
 /*MAIN*/
 .mainClase {
     background-color: black;
@@ -69,13 +72,11 @@ justify-content: center;
 
 /*ID DE LAS CARDS*/
 #agusCard{
-    display: inline-block;
-    margin: 2rem;
-    color: #000;
-}
+    margin: 1rem;
+    }
 
 .carrito {
-    display: block;
+    display: inline-block;
     margin: auto;
 }
 

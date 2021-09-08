@@ -32,7 +32,7 @@
             <!--Carrito-->
               <div class="carrito">
                 <form class="d-flex justify-content-md-start">
-                  <button id="btn-carrito" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#carritoModal">
+                  <button id="btn-carrito" class="btn btn-outline-dark">
                     <i class="bi-cart-fill me-1"></i>
                     Carrito
                     <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -52,51 +52,31 @@
 </header>
 
 <!-- FIN DE HEADER Y COMIENZO DE MAIN -->
-<main class="mainClase">
-  <div class="container-lg">
-    <div class="row">
-      <!-- Modal -->
-      <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title btn btn-secondary" id="exampleModalLabel">Este es tu carrito</h5>
-              <button type="button" class="btn-close btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-              <div class="modal-body row">
-
-                <div>
-                  <h3>Los productos de tu carrito:</h3>
-                  <ul id="listaCarrito" class="list-group">
-              
-                  </ul>
-                 </div>
-                  <!--Este es el modal-footer-->
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Seguir  comprando</button>
-                  </div>
-            </div> 
-          </div>
-        </div>
-      </div>         
-    </div>
-  </div>
- 
 
 <!--ACA VAN LAS CARDS-->
 <div class="container-lg">
   <div class="row">
-    <div class="row-lg-6" id="agusCard">
+    <main id="agusCard" class="col-lg-8 row"></main>
     
-    </div>
-  <!--FIN DE LAS CARDS-->
+    <aside class="col-lg-3">
+      <h3>Este es tu carrito:</h3>
+      <ul id="listaCarrito" class="list-group">
+    
+      </ul>
+        <!-- Precio total -->
+        <p class="text-right">Total: <span id="total"></span> $(ars);</p>
+        <button id="boton-vaciar" class="btn btn-danger">Vaciar Carrito</button>
+        <button id="btn-comprar" class="btn btn-danger">Comprar</button>
 
-   <!--Este es el carrito-->
-   
+        <div id="formularioCliente"> 
+
+        </div>
+     </aside>
   </div>
 </div>
 
-</main>
+<!--ACA VA EL CARRITO-->
+
 
 
 <!--Este es el footer-->
