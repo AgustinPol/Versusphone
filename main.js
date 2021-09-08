@@ -4,11 +4,12 @@ let arrayCarrito = [];
 
 //Objeto Clase DOM PARA GENERAR LOS PRODUCTOS//
 class Producto{
-  constructor(productName,productBrand,productPrice,productImg){
+  constructor(productName,productBrand,productPrice,productImg,category){
       this.productName = productName;
       this.productBrand = productBrand;
       this.productPrice = productPrice;
       this.productImg = productImg;
+      this.category = category;
   }
 
 }
@@ -17,22 +18,24 @@ class Producto{
 let arrayProductos=[];
 
 //PUSHEO LA INFO DE CADA CARD/PRODUCTO//
-const producto1 = new Producto("Smartwatch series 3", "Apple", 32999, "images/Smartwatch-apple.webp");
+const producto1 = new Producto("Smartwatch series 3", "Apple", 32999, "images/Smartwatch-apple.webp", "smartwatch");
 arrayProductos.push(producto1);
-const producto2 = new Producto("Airpods Pro","Apple", 32999, "images/Airpod-Pro.webp");
+const producto2 = new Producto("Airpods Pro","Apple", 32999, "images/Airpod-Pro.webp", "airpods");
 arrayProductos.push(producto2);
-const producto3 = new Producto("Airpods Básicos", "Apple" , 18999, "images/airpodscomun.webp");
+const producto3 = new Producto("Airpods Básicos", "Apple" , 18999, "images/airpodscomun.webp", "airpods");
 arrayProductos.push(producto3);
-const producto4 = new Producto("Smartwatch", "Xiaomi", 6999, "images/xiaomi-smartwatch.webp");
+const producto4 = new Producto("Smartwatch", "Xiaomi", 6999, "images/xiaomi-smartwatch.webp", "smartwatch");
 arrayProductos.push(producto4);
-const producto5 = new Producto("Airpods Max","Apple", 129999, "images/airpods-max.webp");
+const producto5 = new Producto("Airpods Max","Apple", 129999, "images/airpods-max.webp", "airpods");
 arrayProductos.push(producto5);
-const producto6 = new Producto("Smartwatch Sense", "Fitbit", 46999, "images/smartwatch-fitbit.webp");
+const producto6 = new Producto("Smartwatch Sense", "Fitbit", 46999, "images/smartwatch-fitbit.webp", "smartwatch");
 arrayProductos.push(producto6);
 
 //CREO CONSTANTE BASE DE DATOS PARA PODER UTILIZAR EL CARRITO//
 const baseDeDatos = [producto1, producto2, producto3, producto4, producto5, producto6];
 
+//RENDERIZO PRODUCTOS//
+filtrarProductos();
 
 //ORDENAMIENTO DE ARRAY "PRODUCTOS", SE ORDENARON POR PRECIO, DE MENOR A MAYOR.//
 arrayProductos.sort((o1, o2) => {
@@ -45,30 +48,6 @@ if (o1.productPrice < o2.productPrice) {
   }
 
 })
-
-//DECLARO VARIABLE MOSTRAR(RELACIONADA CON LAS CARDS)//
-let mostrar="";
- 
-//GENERAMOS LAS CARDS DEL HTML, CON JAVASCRIPT//
-baseDeDatos.forEach((arrayProductos) => {
-  mostrar+=`<div id="agusCard" class="card" style="width: 18rem;">
-  <img src="${arrayProductos.productImg}" class="card-img-top" alt="imagen-producto">
-  <div class="card-body">
-    <h5 class="card-title">${arrayProductos.productName}</h5>
-    <p class="card-text">${arrayProductos.productBrand}</p>
-    <p class="card-text">$${arrayProductos.productPrice}</p>
-    <!-- Product actions-->
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto botonCarro" href="#" 
-        onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
-        </div>
-    </div>
-    </div>
-</div>`
-})
-
-//LLAMAMOS POR ID A LAS CARD Y LAS INYECTAMOS EN EL HTML//
-document.getElementById("agusCard").innerHTML=mostrar;
 
 //--------------------------------------------------------//
 //Función AGREGAR AL CARRITO//
@@ -165,3 +144,32 @@ const infoCliente = () => {
   }
 }
 
+/**
+ * @param {*} filtro
+ * El filtro es para filtrar los productos 
+ */
+ function filtrarProductos(filtro = 'default') {
+  let nuevosProductos = (filtro !== "default") ? 
+  baseDeDatos.filter(arrayProductos => arrayProductos.category == filtro) :
+  baseDeDatos;
+
+  /*** Creando las cards en JS */
+  let mostrar=``;
+  nuevosProductos.forEach((arrayProductos) => {
+    mostrar+=`<div id="agusCard" class="card" style="width: 18rem;">
+    <img src="${arrayProductos.productImg}" class="card-img-top" alt="imagen-producto">
+    <div class="card-body">
+      <h5 class="card-title">${arrayProductos.productName}</h5>
+      <p class="card-text">${arrayProductos.productBrand}</p>
+      <p class="card-text">$${arrayProductos.productPrice}</p>
+      <!-- Product actions-->
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+          <div class="text-center"><a class="btn btn-outline-dark mt-auto botonCarro" href="#" 
+          onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
+          </div>
+      </div>
+      </div>
+  </div>`
+  });
+  $("#agusCard").html(mostrar)
+}
