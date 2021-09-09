@@ -10,12 +10,11 @@
     <!--Bootstrap Css-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!--CDN JQuery-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
     <!--Mis Estilos-->
     <link rel="stylesheet" href="css/style.css">
     <!--Mis Archivos Scripts-->
     <script src="javascript/productos.js" defer></script>
-    <script src="javascript/clientes.js" defer></script>
     <script src="main.js" defer></script>
 </head>
 
@@ -32,8 +31,8 @@
             <nav class="menu">
               <ul class="navmenu horizontal">
                 <li><a class="btn-outline-dark" href="index.html">Home</a></li>
-                <li><a class="btn-outline-dark" href="#" onclick="filtrarProductos('smartwatch')">Smartwatch</a></li>
-                <li><a class="btn-outline-dark" href="#" onclick="filtrarProductos('airpods')">Airpods</a></li>
+                <li><a class="btn-outline-dark" href="#" onclick="renderizarProductos('smartwatch')">Smartwatch</a></li>
+                <li><a class="btn-outline-dark" href="#" onclick="renderizarProductos('airpods')">Airpods</a></li>
               </ul>
             </nav>
         </div>

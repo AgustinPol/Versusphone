@@ -1,4 +1,3 @@
-//Objeto Clase DOM PARA GENERAR LOS PRODUCTOS//
 class Producto{
     constructor(productName,productBrand,productPrice,productImg,category){
         this.productName = productName;
