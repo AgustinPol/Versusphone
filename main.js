@@ -1,32 +1,33 @@
 //CREO ARRAY CARRITO//
-let arrayCarrito = [];
+let carrito = [];
+
+let total = 0;
 
 //RENDERIZO PRODUCTOS//
 filtrarProductos();
 
-//--------------------------------------------------------//
-//Función AGREGAR AL CARRITO//
+//Función AGREGAR AL productoAgregado//
 function agregarAlCarrito(productName){
   const productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
-      arrayCarrito.push(productoAgregado);
+      carrito.push(productoAgregado);
       const miLista = document.getElementById('listaCarrito');
-      const newLi = document.createElement('li');
-      const buttonClose = document.createElement("button")
-      newLi.setAttribute("class", "list-group-item");
+      const itemLista = document.createElement('li');
+      const buttonClose = document.createElement("button");
+      itemLista.setAttribute("class", "list-group-item");
       buttonClose.setAttribute("type", "button");
       buttonClose.setAttribute("class", "btn-close");
-      buttonClose.setAttribute("aria-label", "Close")
-      newLi.textContent = ` ${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)}`;
-      miLista.appendChild(newLi);
-      newLi.appendChild(buttonClose);
+      buttonClose.setAttribute("aria-label", "Close");
+      itemLista.textContent = ` ${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)}`;
+      miLista.appendChild(itemLista);
+      itemLista.appendChild(buttonClose);
+      return(productoAgregado);
   }else{
       alert("algo falló");
   }
-  // CALCULAR TOTAL DEL CARRITO//
-  document.getElementById("contador-carrito").innerHTML = arrayCarrito.length;
-  console.log(arrayCarrito);
+
 }
+
 //-------------------------------------------------------------------//
 
 //ESTA ES LA SECCIÓN DE LAS CUOTAS
@@ -36,7 +37,7 @@ const formasDePago = ['Tarjeta de Crédito', 'Tarjeta de débito', 'Transferenci
 //CREO ELEMENTO SELECT
 const select = document.createElement('select');
 //INGRESO ATRIBUTOS AL SELECT
-select.setAttribute('class', 'btn btn-outline-dark');
+select.setAttribute('class', 'btn btn-secondary');
 //METO SELECT EN cuotasId
 cuotasId.appendChild(select);
 //RECORREMOS ARRAY CON forEach
@@ -56,7 +57,8 @@ function imprimirSeleccion(e){
 select.addEventListener('change',
   function(){
     let selectedOption = this.options[select.selectedIndex];
-    const p = document.createElement('p');    
+    const p = document.createElement('p');
+    p.setAttribute("class", "parrafoCuotas")    
     p.textContent = `Elegiste abonar con ${selectedOption.text}`;
     cuotasId.appendChild(p);
 });
