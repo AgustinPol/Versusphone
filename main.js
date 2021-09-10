@@ -8,7 +8,7 @@ renderizarProductos();
 
 //Función AGREGAR AL productoAgregado//
 function agregarAlCarrito(productName){
-  let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
+  const productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
       const miLista = document.getElementById('listaCarrito');
@@ -21,6 +21,7 @@ function agregarAlCarrito(productName){
       itemLista.textContent = ` ${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)}`;
       miLista.appendChild(itemLista);
       itemLista.appendChild(buttonClose);
+      return(productoAgregado);
   }else{
       alert("algo falló");
   }
