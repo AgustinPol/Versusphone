@@ -1,67 +1,58 @@
+//renderizo productos con jquery
+$(document).ready(renderizarProductos());
+
 //CREO ARRAY CARRITO//
 let carrito = [];
 
 let total = 0;
 
-//RENDERIZO PRODUCTOS//
-renderizarProductos();
-
-//Función AGREGAR AL productoAgregado//
+//Vuelvo a hacer la función agregarAlCarrito(), pero con Jquery (ahorro muchas lineas).
 function agregarAlCarrito(productName){
-  const productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
+  let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
-      const miLista = document.getElementById('listaCarrito');
-      const itemLista = document.createElement('li');
-      const buttonClose = document.createElement("button");
-      itemLista.setAttribute("class", "list-group-item");
-      buttonClose.setAttribute("type", "button");
-      buttonClose.setAttribute("class", "btn-close");
-      buttonClose.setAttribute("aria-label", "Close");
-      itemLista.textContent = ` ${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)}`;
-      miLista.appendChild(itemLista);
-      itemLista.appendChild(buttonClose);
-      return(productoAgregado);
-  }else{
+       $("#listaCarrito");
+       $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
+  } else{
       alert("algo falló");
   }
+}
+console.log(carrito);
 
+//Función VACIAR CARRITO//
+const botonVaciar = document.getElementById("boton-vaciar");
+botonVaciar.addEventListener("click", vaciarCarrito);
+
+function vaciarCarrito() {
+
+  if (carrito != undefined) {
+    //vacío el carrito
+    carrito.splice(0, carrito.length);
+    // llamo by id a la lista
+    $("#listaCarrito");
+    //saco elementos del dom
+    $("#listaCarrito").html("");
+    } else {
+    alert("algo falló");
+  }
 }
 
-  //ESTA ES LA SECCIÓN DE LAS CUOTAS
-  const cuotasId = document.getElementById('formaDePago');
-  //CREO ARRAY
-  const formasDePago = ['Tarjeta de Crédito', 'Tarjeta de débito', 'Transferencia Bancaria'];
-  //CREO ELEMENTO SELECT
-  const select = document.createElement('select');
-  //INGRESO ATRIBUTOS AL SELECT
-  select.setAttribute('class', 'btn btn-secondary');
-  //METO SELECT EN cuotasId
-  cuotasId.appendChild(select);
-  //RECORREMOS ARRAY CON forEach
-  formasDePago.forEach((forma, index) => {
-      const option = document.createElement('option');
-      option.setAttribute('value', index);
-      option.textContent = forma;
-  
-      select.appendChild(option);
-  })
-  
-  function imprimirSeleccion(e){
-      //DISPARA EL EVENTO
-      console.log(e.target)
-  }
-  
-  select.addEventListener('change',
-    function(){
-      let selectedOption = this.options[select.selectedIndex];
-      const p = document.createElement('p');
-      p.setAttribute("class", "parrafoCuotas"); 
-      p.textContent = `Elegiste abonar con ${selectedOption.text}`;
-      cuotasId.appendChild(p);
-  });  
+// Función ELIMINAR DEL CARRITO//
+// const botonEliminar = document.getElementsByClassName("boton-eliminar");
+// botonEliminar.addEventListener("click", eliminarDelCarrito);
 
-//-------------------------------------------------------------------//
+// function eliminarDelCarrito() {
+  
+//   if (carrito != undefined) {
+//     //metodo para borrar un elemento del array
+//      carrito.shift();
+//      let miLista = document.getElementById("listaCarrito");
+//      //metodo para remover del dom
+//      miLista.removeChild(miLista.childNodes[0]);
+//     } else {
+//     alert("algo falló");
+//   }
+// } 
 
 /**
  * @param {*} filtro
@@ -90,10 +81,8 @@ function agregarAlCarrito(productName){
       </div>
   </div>`
   });
-  $("#agusCard").html(mostrar)
+  $("#agusCard").html(mostrar);
 }
-
-
 
 // OBJETO CONSTRUCTOR PARA CLIENTES//
 class Cliente{
