@@ -46,6 +46,7 @@ label{
     padding: 1rem;
 }
 
+
 .divLogo {
     border: solid #fff;
     background-color: rgb(44, 42, 42);
@@ -85,6 +86,7 @@ justify-content: center;
 /*ID DE LAS CARDS*/
 #agusCard{
     margin: 1rem;
+    color: #000;
     }
 
 .carrito {

@@ -19,9 +19,9 @@ function agregarAlCarrito(productName){
 }
 console.log(carrito);
 
-//Función VACIAR CARRITO//
-const botonVaciar = document.getElementById("boton-vaciar");
-botonVaciar.addEventListener("click", vaciarCarrito);
+//Función VACIAR CARRITO//Hecha con Jquery//
+
+$("#boton-vaciar").on("click", vaciarCarrito);
 
 function vaciarCarrito() {
 
