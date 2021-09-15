@@ -6,7 +6,8 @@ let carrito = [];
 
 let total = 0;
 
-//Vuelvo a hacer la función agregarAlCarrito(), pero con Jquery (ahorro muchas lineas).
+//Función agregarAlCarrito// 
+//utilizo selectores de Jquery y método append. (ahorro muchas lineas).
 function agregarAlCarrito(productName){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
@@ -14,13 +15,13 @@ function agregarAlCarrito(productName){
        $("#listaCarrito");
        $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
   } else{
-      alert("algo falló");
+      console.log("algo falló");
   }
 }
 console.log(carrito);
 
-//Función VACIAR CARRITO//Hecha con Jquery//
-
+//Función VACIAR CARRITO//
+//utilizo selectores de Jquery y el método .on//
 $("#boton-vaciar").on("click", vaciarCarrito);
 
 function vaciarCarrito() {
@@ -33,7 +34,7 @@ function vaciarCarrito() {
     //saco elementos del dom
     $("#listaCarrito").html("");
     } else {
-    alert("algo falló");
+    console.log("algo falló");
   }
 }
 
@@ -81,6 +82,7 @@ function vaciarCarrito() {
       </div>
   </div>`
   });
+  //utilizo sintaxis de Jquery.
   $("#agusCard").html(mostrar);
 }
 
