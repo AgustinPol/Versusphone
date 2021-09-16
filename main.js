@@ -11,11 +11,12 @@ let total = 0;
 const DOMtotal = document.getElementById('total');
 
 //Función agregarAlCarrito// 
-//utilizo selectores de Jquery y método append. (ahorro muchas lineas).//
+//utilizo selectores de Jquery y método append. (ahorro muchas lineas)//
 function agregarAlCarrito(productName){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
+      localStorage.setItem('carrito', JSON.stringify(`${productoAgregado.productName} - ${productoAgregado.productPrice}`));
        $("#listaCarrito");
        $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
        calcularTotal();
@@ -42,7 +43,7 @@ function vaciarCarrito() {
     $("#total").html("");
     //calculo total//
     total = 0;
-    console.log(total)
+    console.log(total);
     calcularTotal();
     } else {
     console.log("algo falló");
@@ -118,10 +119,11 @@ function calcularTotal() {
 
 // OBJETO CONSTRUCTOR PARA CLIENTES//
 class Cliente{
-  constructor(nombre, apellido, edad, direccion, email, telefono){
+  constructor(nombre, apellido, edad, dni, direccion, email, telefono){
       this.nombre = nombre;
       this.apellido = apellido;
       this.edad = edad;
+      this.dni = dni;
       this.direccion = direccion;
       this.email = email;
       this.telefono = telefono;
@@ -139,6 +141,7 @@ const infoCliente = () => {
   let nombre = document.getElementById("nombre").value;
   let apellido = document.getElementById("apellido").value;
   let edad = document.getElementById("edad").value;
+  let dni = document.getElementById("dni").value;
   let direccion = document.getElementById("direccion").value;
   let email = document.getElementById("email").value;
   let telefono = document.getElementById("telefono").value;
@@ -147,11 +150,12 @@ const infoCliente = () => {
     let datosCliente = {nombre: nombre,
                  apellido: apellido,
                  edad: edad,
+                 dni: dni,
                  direccion: direccion,
                  email: email,
                  telefono: telefono}
   
-    arrayClientes.push(new Cliente(nombre, apellido, edad, direccion, email, telefono));
+    arrayClientes.push(new Cliente(nombre, apellido, edad, dni, direccion, email, telefono));
     localStorage.setItem("clientes", JSON.stringify(arrayClientes));
     console.log(localStorage.getItem("clientes", arrayClientes));
     console.log(JSON.stringify(`${datosCliente.nombre} ya tenemos tus datos, gracias por tu compra!`));
