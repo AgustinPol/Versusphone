@@ -91,20 +91,26 @@ function calcularTotal() {
   // CREO MIS CARDS CON JS //
   let mostrar=``;
   nuevosProductos.forEach((arrayProductos) => {
-    mostrar+=`<div id="agusCard" class="card" style="width: 16rem;">
-    <img src="${arrayProductos.productImg}" class="card-img-top img-fluid" alt="imagen-producto">
-    <div class="card-body">
-      <h5 class="card-title">${arrayProductos.productName}</h5>
-      <p class="card-text">${arrayProductos.productBrand}</p>
-      <p class="card-text">$${arrayProductos.productPrice}</p>
-      <!-- Product actions-->
-      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-          <div class="text-center"><a class="btn btn-outline-dark mt-auto" 
-          onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
-          </div>
+  mostrar+=`<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${arrayProductos.productImg}" class="img-fluid rounded-start" alt="imagen-producto">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${arrayProductos.productName}</h5>
+        <p class="card-text">${arrayProductos.productBrand}</p>
+        <p class="card-text">$${arrayProductos.productPrice}</small></p>
+        <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" 
+                 onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
+                 </div>
+            </div>
       </div>
-      </div>
-  </div>`
+    </div>
+  </div>
+</div>`
   });
   //utilizo sintaxis de Jquery.//
   $("#agusCard").html(mostrar);

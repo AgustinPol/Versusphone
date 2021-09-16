@@ -11,26 +11,8 @@ a {
     text-transform: none;
 }
 
-img{
-    width: 10rem;
-    height: 10rem;
-}
-
 footer {
     background-color: rgb(44, 42, 42);
-}
-
-.parrafoCuotas {
-    color: #fff;
-}
-
-aside {
-    color: #fff;
-    margin-top: 1.5rem;
-}
-
-.divCarrito {
-    border: solid rgb(233, 211, 14);
 }
 
 form {
@@ -40,16 +22,18 @@ form {
 label{
     color: #fff;
 }
-/*MAIN*/
-.mainClase {
-    background-color: black;
-}
 
-.instagramText {
+aside {
     color: #fff;
-    padding: 1rem;
+    margin-top: 1.5rem;
 }
 
+/* DIVS */
+.divCarrito {
+    border: solid rgb(233, 211, 14);
+    width: 20rem;
+    height: 40rem;
+}
 
 .divLogo {
     border: solid #fff;
@@ -63,17 +47,36 @@ label{
     display: inline-block;
 }
 
-.btnFinalizar:hover {
-    background-color: rgba(247, 247, 0, 0.356);
+.divInsta {
+    display: inline-block;
+    width: 6rem;
+    height: 3.5rem;
+    margin: 3.5rem;
+}
+
+/*MAIN*/
+.mainClase {
+    background-color: black;
+}
+/*TEXTOS VARIOS*/
+.parrafoCuotas {
+    color: #fff;
+}
+
+.instagramText {
+    color: #fff;
+    padding: 1rem;
 }
 
 .logo {
-margin: auto;
-font-size: 2rem;
-padding: 1rem;
-text-align: center;
-justify-content: center;
-}
+    margin: auto;
+    font-size: 2rem;
+    padding: 1rem;
+    text-align: center;
+    justify-content: center;
+    }
+
+/*BOTONES*/    
 
 .btnFinalizar {
     color: #fff;
@@ -87,17 +90,21 @@ justify-content: center;
 
 }
 
+.btnFinalizar:hover {
+    background-color: rgba(247, 247, 0, 0.356);
+}
 /*ID DE LAS CARDS*/
 #agusCard{
     margin: 1rem;
     color: #000;
     }
 
+/*CLASS CARRITO*/    
 .carrito {
     display: inline-block;
     margin: auto;
 }
-
+/*IMG DEL INSTAGRAM*/
 .imgInsta {
     display: inline-block;
     width: 3rem;
@@ -108,13 +115,6 @@ justify-content: center;
 .imgInsta:hover {
     background: rgba(255, 255, 255, 0.377);
     border-radius: 5px;
-}
-
-.divInsta {
-    display: inline-block;
-    width: 6rem;
-    height: 3.5rem;
-    margin: 3.5rem;
 }
 
 /*HEADER Y MENU*/
