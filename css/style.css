@@ -29,6 +29,10 @@ aside {
     margin-top: 1.5rem;
 }
 
+.divCarrito {
+    border: solid rgb(233, 211, 14);
+}
+
 form {
     margin-bottom: 2rem;
 }

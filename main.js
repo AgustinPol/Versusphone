@@ -40,13 +40,16 @@ function vaciarCarrito() {
     $("#listaCarrito").html("");
     //saco elementos del dom x 2
     $("#total").html("");
+    //calculo total//
+    total = 0;
+    console.log(total)
     calcularTotal();
     } else {
     console.log("algo falló");
   }
 }
 
-
+//Función para Calcular el total//
 function calcularTotal() {
   
   total = 0;
@@ -54,22 +57,10 @@ function calcularTotal() {
   let parcial = (valor.productPrice);   
   total += parcial;
   DOMtotal.textContent = total.toFixed(2);
+  console.log(total);
 });
 }
-// function calcularTotal() {
-  // Limpiamos precio anterior
-  // total = 0;
-  // Recorremos el array del carrito
-  // carrito.forEach((item) => {
-      // De cada elemento obtenemos su precio
-  //     const miItem = baseDeDatos.filter((itemBaseDatos) => {
-  //         return itemBaseDatos.id === parseInt(item);
-  //     });
-  //     total = total + miItem[0].precio;
-  // });
-  // Renderizamos el precio en el HTML
-  
-// }
+
 
 // Función ELIMINAR DEL CARRITO//
 // const botonEliminar = document.getElementsByClassName("boton-eliminar");
