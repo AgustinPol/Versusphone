@@ -22,10 +22,12 @@ function agregarAlCarrito(productName){
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
       localStorage.setItem("miCarrito", JSON.stringify(carrito));
-      // localStorage.setItem("miCarrito", JSON.stringify(`${productoAgregado.productName} - ${productoAgregado.productPrice}`));
        $("#listaCarrito");
        $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
        calcularTotal();
+       $(".agregoProd").click(() => { 
+        $(".itemList").fadeIn(500);
+        });
   } else{
       console.log("algo falló");
   }
@@ -56,19 +58,6 @@ function vaciarCarrito() {
   }
 }
 
-//Eliminar producto del carrito
-function eliminarProducto(e){
-  e.preventDefault();
-  
-  let producto, productId;
-  if(e.target.classList.contains('borrar-curso')){
-      producto = e.target.parentElement.parentElement;
-      productId = producto.querySelector('a').getAttribute('data-id');
-      e.target.parentElement.parentElement.remove();
-  }
-  // eliminarCursoLocalStorage(cursoId);
-}
-
 
 // Función storage
 function vaciarLocalStorage(){
@@ -92,6 +81,7 @@ function animaciones() {
   $("#divMiLogo").show(500);
   $("#divMiLogo").animate({left:"+=100px"});
   $(".agusCard").fadeIn(500);
+  
 }
 
 
@@ -135,7 +125,7 @@ function animaciones() {
         <p class="card-text">$${arrayProductos.productPrice}</small></p>
         <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" 
+                 <div class="text-center"><a class="btn btn-outline-dark mt-auto agregoProd" 
                  onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
                  </div>
             </div>
@@ -146,7 +136,7 @@ function animaciones() {
   });
   //utilizo sintaxis de Jquery.//
   $("#agusCard").html(mostrar);
-  //llamo la función de animaciones para que tambien se ejecuten en los filtros
+  //llamo la función de animaciones para que tambien se ejecuten en los filtros 
   animaciones();
 }
 

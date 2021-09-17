@@ -103,6 +103,9 @@ aside {
     color: #000;
     }
 
+.itemList {
+    display: none;
+}
 /*CLASS CARRITO*/    
 .carrito {
     display: inline-block;
