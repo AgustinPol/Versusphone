@@ -1,6 +1,12 @@
+//To Do: -función eliminar del carrito
+//To Do: -función para guardar en localStorage
+//To Do: -traer del localStorage
+//To Do: -Hacer funcionar la api
+//To Do: -Hacer una animación con Jquery
+
 //renderizo productos con jquery//
 $(document).ready(renderizarProductos());
-
+animaciones();
 //CREO ARRAY CARRITO//
 let carrito = [];
 
@@ -8,15 +14,15 @@ let carrito = [];
 let total = 0;
 
 //imprimimos el total del carrito//
-const DOMtotal = document.getElementById('total');
+const DOMtotal = document.getElementById("total");
 
 //Función agregarAlCarrito// 
-//utilizo selectores de Jquery y método append. (ahorro muchas lineas)//
 function agregarAlCarrito(productName){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
-      localStorage.setItem('carrito', JSON.stringify(`${productoAgregado.productName} - ${productoAgregado.productPrice}`));
+      localStorage.setItem("miCarrito", JSON.stringify(carrito));
+      // localStorage.setItem("miCarrito", JSON.stringify(`${productoAgregado.productName} - ${productoAgregado.productPrice}`));
        $("#listaCarrito");
        $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
        calcularTotal();
@@ -27,7 +33,6 @@ function agregarAlCarrito(productName){
 console.log(carrito);
 
 //Función VACIAR CARRITO//
-//utilizo selectores de Jquery y el método .on//
 $("#boton-vaciar").on("click", vaciarCarrito);
 
 function vaciarCarrito() {
@@ -35,7 +40,7 @@ function vaciarCarrito() {
   if (carrito != undefined) {
     //vacío el carrito
     carrito.splice(0, carrito.length);
-    // llamo by id a la lista
+    //llamo by id a la lista
     $("#listaCarrito");
     //saco elementos del dom
     $("#listaCarrito").html("");
@@ -44,10 +49,30 @@ function vaciarCarrito() {
     //calculo total//
     total = 0;
     console.log(total);
+    vaciarLocalStorage();
     calcularTotal();
     } else {
     console.log("algo falló");
   }
+}
+
+//Eliminar producto del carrito
+function eliminarProducto(e){
+  e.preventDefault();
+  
+  let producto, productId;
+  if(e.target.classList.contains('borrar-curso')){
+      producto = e.target.parentElement.parentElement;
+      productId = producto.querySelector('a').getAttribute('data-id');
+      e.target.parentElement.parentElement.remove();
+  }
+  // eliminarCursoLocalStorage(cursoId);
+}
+
+
+// Función storage
+function vaciarLocalStorage(){
+  localStorage.clear();
 }
 
 //Función para Calcular el total//
@@ -60,6 +85,13 @@ function calcularTotal() {
   DOMtotal.textContent = total.toFixed(2);
   console.log(total);
 });
+}
+
+//hacemos animación con Jquery
+function animaciones() {
+  $("#divMiLogo").show(500);
+  $("#divMiLogo").animate({left:"+=100px"});
+  $(".agusCard").fadeIn(500);
 }
 
 
@@ -88,11 +120,10 @@ function calcularTotal() {
   let nuevosProductos = (filtro !== "default") ? 
   baseDeDatos.filter(arrayProductos => arrayProductos.category == filtro) :
   baseDeDatos;
-
   // CREO MIS CARDS CON JS //
   let mostrar=``;
   nuevosProductos.forEach((arrayProductos) => {
-  mostrar+=`<div class="card mb-3" style="max-width: 540px;">
+  mostrar+=`<div class="card mb-3 agusCard" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
       <img src="${arrayProductos.productImg}" class="img-fluid rounded-start" alt="imagen-producto">
@@ -115,6 +146,8 @@ function calcularTotal() {
   });
   //utilizo sintaxis de Jquery.//
   $("#agusCard").html(mostrar);
+  //llamo la función de animaciones para que tambien se ejecuten en los filtros
+  animaciones();
 }
 
 // OBJETO CONSTRUCTOR PARA CLIENTES//
@@ -132,9 +165,6 @@ class Cliente{
 
 //DECLARACIÓN DEL ARRAY//
 const arrayClientes = [];
-
-//ORDENO CLIENTES//
-arrayClientes.sort();
 
 //FUNCIÓN PARA RECOLECTAR LOS DATOS DEL CLIENTE//
 const infoCliente = () => {

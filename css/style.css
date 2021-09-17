@@ -33,9 +33,12 @@ aside {
     border: solid rgb(233, 211, 14);
     width: 20rem;
     height: 40rem;
+    margin-left: 10rem;
+    margin-top: 3rem;
 }
 
 .divLogo {
+    display: none;
     border: solid #fff;
     background-color: rgb(44, 42, 42);
     color:#fff;
@@ -44,7 +47,7 @@ aside {
     margin-right: 3.5rem;
     width: 20rem;
     height: 6rem;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .divInsta {
@@ -94,7 +97,8 @@ aside {
     background-color: rgba(247, 247, 0, 0.356);
 }
 /*ID DE LAS CARDS*/
-#agusCard{
+.agusCard{
+    display: none;
     margin: 1rem;
     color: #000;
     }
