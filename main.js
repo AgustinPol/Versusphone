@@ -24,10 +24,9 @@ function agregarAlCarrito(productName){
       localStorage.setItem("miCarrito", JSON.stringify(carrito));
        $("#listaCarrito");
        $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
+       animacionItem();
        calcularTotal();
-       $(".agregoProd").click(() => { 
-        $(".itemList").fadeIn(500);
-        });
+      
   } else{
       console.log("algo falló");
   }
@@ -58,7 +57,6 @@ function vaciarCarrito() {
   }
 }
 
-
 // Función storage
 function vaciarLocalStorage(){
   localStorage.clear();
@@ -80,10 +78,14 @@ function calcularTotal() {
 function animaciones() {
   $("#divMiLogo").show(500);
   $("#divMiLogo").animate({left:"+=100px"});
-  $(".agusCard").fadeIn(500);
-  
-}
+  $(".agusCard").fadeIn(500); }
 
+//animación items
+function  animacionItem() {
+    $(".itemList").fadeIn(300)
+                  .css("background-color","rgb(233, 211, 14)")
+                  .animate({height:"70px"}); }
+                             
 
 // Función ELIMINAR DEL CARRITO//
 // const botonEliminar = document.getElementsByClassName("boton-eliminar");
