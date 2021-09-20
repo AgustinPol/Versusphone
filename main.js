@@ -17,16 +17,16 @@ let total = 0;
 const DOMtotal = document.getElementById("total");
 
 //Función agregarAlCarrito// 
-function agregarAlCarrito(productName){
-  let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.productName === productName);
+function agregarAlCarrito(title){
+  let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.title === title);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
       localStorage.setItem("miCarrito", JSON.stringify(carrito));
        $("#listaCarrito");
-       $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.productName)} - Precio: $${JSON.stringify(productoAgregado.productPrice)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
+       $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
        animacionItem();
        calcularTotal();
-      
+       linkDePago();
   } else{
       console.log("algo falló");
   }
@@ -67,7 +67,7 @@ function calcularTotal() {
   
   total = 0;
   carrito.forEach(function (valor) {
-  let parcial = (valor.productPrice);   
+  let parcial = (valor.unit_price);   
   total += parcial;
   DOMtotal.textContent = total.toFixed(2);
   console.log(total);
@@ -110,7 +110,7 @@ function  animacionItem() {
  */
  function renderizarProductos(filtro = 'default') {
   let nuevosProductos = (filtro !== "default") ? 
-  baseDeDatos.filter(arrayProductos => arrayProductos.category == filtro) :
+  baseDeDatos.filter(arrayProductos => arrayProductos.category_id == filtro) :
   baseDeDatos;
   // CREO MIS CARDS CON JS //
   let mostrar=``;
@@ -118,17 +118,17 @@ function  animacionItem() {
   mostrar+=`<div class="card mb-3 agusCard" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="${arrayProductos.productImg}" class="img-fluid rounded-start" alt="imagen-producto">
+      <img src="${arrayProductos.picture_url}" class="img-fluid rounded-start" alt="imagen-producto">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">${arrayProductos.productName}</h5>
-        <p class="card-text">${arrayProductos.productBrand}</p>
-        <p class="card-text">$${arrayProductos.productPrice}</small></p>
+        <h5 class="card-title">${arrayProductos.title}</h5>
+        <p class="card-text">${arrayProductos.description}</p>
+        <p class="card-text">$${arrayProductos.unit_price}</small></p>
         <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                  <div class="text-center"><a class="btn btn-outline-dark mt-auto agregoProd" 
-                 onclick="agregarAlCarrito('${arrayProductos.productName}')">Agregar al carrito</a>
+                 onclick="agregarAlCarrito('${arrayProductos.title}')">Agregar al carrito</a>
                  </div>
             </div>
       </div>
@@ -142,3 +142,36 @@ function  animacionItem() {
   animaciones();
 }
 
+//URLBASE: "https://api.mercadopago.com"
+//ENDPOINT: /checkout/preferences
+
+function linkDePago() {
+  //DATOS A ENVIAR
+
+const elementosMp = carrito.map(producto =>{
+  return {
+    "title" : producto.title,
+    "description": producto.description,
+    "picture_url" : producto.picture_url,
+    "category_id" : producto.category_id,
+    "quantity" : 1,
+    "currency_id" : "ARS",
+    "unit_price" : producto.unit_price
+  }
+})  
+const datosProductoMP = {"items": elementosMp}
+
+//LOS HEADERS(no son en todos los casos)
+$.ajaxSetup({
+  headers:{
+    "Authorization": "Bearer TEST-1636818352685457-092017-ffeb98783f1bf6b11fa32dbc941c69d3-593315394",
+   "Content-Type": "application/json"
+  }
+});
+
+//EL POST(el callback y la petición)
+$.post("https://api.mercadopago.com/checkout/preferences", JSON.stringify(datosProductoMP), (respuesta, estado) => {
+  console.log(respuesta);
+  console.log(estado)
+});
+}
