@@ -30,7 +30,7 @@ function agregarAlCarrito(title){
       console.log("algo falló");
   }
 }
-console.log(carrito);
+// console.log(carrito);
 
 //Función btnComprar()
 $("#btn-comprar").on("click", btnComprar)
@@ -58,7 +58,7 @@ function vaciarCarrito() {
     $("#total").html("");
     //calculo total//
     total = 0;
-    console.log(total);
+    // console.log(total);
     vaciarLocalStorage();
     calcularTotal();
     } else {
@@ -79,7 +79,7 @@ function calcularTotal() {
   let parcial = (valor.unit_price);   
   total += parcial;
   DOMtotal.textContent = total.toFixed(2);
-  console.log(total);
+  // console.log(total);
 });
 }
 
@@ -93,25 +93,24 @@ function animaciones() {
 function  animacionItem() {
     $(".itemList").fadeIn(300)
                   .css("background-color","rgb(233, 211, 14)")
-                  ; }
+                  ;}
                              
 
 // Función ELIMINAR DEL CARRITO//
-// const botonEliminar = document.getElementsByClassName("boton-eliminar");
-// botonEliminar.addEventListener("click", eliminarDelCarrito);
+const botonEliminar = document.getElementsByClassName("boton-eliminar");
+botonEliminar.addEventListener("click", eliminarDelCarrito);
 
-// function eliminarDelCarrito() {
-  
-//   if (carrito != undefined) {
-//     //metodo para borrar un elemento del array//
-//      carrito.shift();
-//      let miLista = document.getElementById("listaCarrito");
-//      //metodo para remover del dom//
-//      miLista.removeChild(miLista.childNodes[0]);
-//     } else {
-//     alert("algo falló");
-//   }
-// } 
+function eliminarDelCarrito () {
+  if (carrito != undefined) {
+    //metodo para borrar un elemento del array//
+     carrito.shift();
+     let miLista = document.getElementById("listaCarrito");
+     //metodo para remover del dom//
+     miLista.removeChild(miLista.childNodes[0]);
+    } else {
+    alert("algo falló");
+  }
+} 
 
 /**
  * @param {*} filtro
