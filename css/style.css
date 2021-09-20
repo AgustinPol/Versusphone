@@ -50,6 +50,9 @@ aside {
     /* display: inline-block; */
 }
 
+#linkMp {
+    color: #fff;
+}
 .divInsta {
     display: inline-block;
     width: 6rem;

@@ -26,13 +26,22 @@ function agregarAlCarrito(title){
        $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
        animacionItem();
        calcularTotal();
-       linkDePago();
   } else{
       console.log("algo falló");
   }
 }
 console.log(carrito);
 
+//Función btnComprar()
+$("#btn-comprar").on("click", btnComprar)
+
+function btnComprar() {
+  if (carrito.length === 0) {
+    console.log("el carrito esta vacío")
+  } else {
+    linkDePago();
+  }
+}
 //Función VACIAR CARRITO//
 $("#boton-vaciar").on("click", vaciarCarrito);
 
@@ -148,7 +157,7 @@ function  animacionItem() {
 function linkDePago() {
   //DATOS A ENVIAR
 
-const elementosMp = carrito.map(producto =>{
+const elementosMpParcial = carrito.map(producto =>{
   return {
     "title" : producto.title,
     "description": producto.description,
@@ -159,7 +168,7 @@ const elementosMp = carrito.map(producto =>{
     "unit_price" : producto.unit_price
   }
 })  
-const datosProductoMP = {"items": elementosMp}
+const elementosMpFinal = {"items": elementosMpParcial}
 
 //LOS HEADERS(no son en todos los casos)
 $.ajaxSetup({
@@ -170,7 +179,7 @@ $.ajaxSetup({
 });
 
 //EL POST(el callback y la petición)
-$.post("https://api.mercadopago.com/checkout/preferences", JSON.stringify(datosProductoMP), (respuesta, estado) => {
+$.post("https://api.mercadopago.com/checkout/preferences", JSON.stringify(elementosMpFinal), (respuesta, estado) => {
   console.log(respuesta);
   console.log(estado)
 });
