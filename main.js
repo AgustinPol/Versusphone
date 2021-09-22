@@ -23,14 +23,23 @@ function agregarAlCarrito(title){
       carrito.push(productoAgregado);
       localStorage.setItem("miCarrito", JSON.stringify(carrito));
        $("#listaCarrito");
-       $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></button></li>`);
+       $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`);
+       $(".boton-eliminar").on("click", eliminarDelCarrito);
        animacionItem();
        calcularTotal();
   } else{
       console.log("algo falló");
   }
 }
-// console.log(carrito);
+console.log(carrito);
+
+// Función ELIMINAR DEL CARRITO//
+function eliminarDelCarrito(event) {
+  const botonEliminar = event.target;
+  carrito.splice(event.target);
+  botonEliminar.closest(".itemList").remove();
+  calcularTotal();
+};
 
 //Función btnComprar()
 $("#btn-comprar").on("click", btnComprar)
@@ -82,6 +91,30 @@ function calcularTotal() {
   // console.log(total);
 });
 }
+//function// 
+function updateShoppingCartTotal() {
+  let total = 0;
+  const carritoTotal = $('#listaCarrito');
+
+  const carritoItems = $('.itemList');
+
+  carritoItems.forEach((shoppingCartItem) => {
+    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
+      '.shoppingCartItemPrice'
+    );
+    const shoppingCartItemPrice = Number(
+      shoppingCartItemPriceElement.textContent.replace('€', '')
+    );
+    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
+      '.shoppingCartItemQuantity'
+    );
+    const shoppingCartItemQuantity = Number(
+      shoppingCartItemQuantityElement.value
+    );
+    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+  });
+  shoppingCartTotal.innerHTML = `${total.toFixed(2)}€`;
+}
 
 //Hacemos animación con Jquery//
 function animaciones() {
@@ -94,23 +127,7 @@ function  animacionItem() {
     $(".itemList").fadeIn(300)
                   .css("background-color","rgb(233, 211, 14)")
                   ;}
-                             
 
-// Función ELIMINAR DEL CARRITO//
-const botonEliminar = document.getElementsByClassName("boton-eliminar");
-botonEliminar.addEventListener("click", eliminarDelCarrito);
-
-function eliminarDelCarrito () {
-  if (carrito != undefined) {
-    //metodo para borrar un elemento del array//
-     carrito.shift();
-     let miLista = document.getElementById("listaCarrito");
-     //metodo para remover del dom//
-     miLista.removeChild(miLista.childNodes[0]);
-    } else {
-    alert("algo falló");
-  }
-} 
 
 /**
  * @param {*} filtro
@@ -169,17 +186,16 @@ const elementosMpParcial = carrito.map(producto =>{
 })  
 const elementosMpFinal = {"items": elementosMpParcial}
 
-//LOS HEADERS(no son en todos los casos)
-$.ajaxSetup({
+const APIURL = "https://api.mercadopago.com/checkout/preferences";
+fetch(APIURL,{
+  method: "POST",
   headers:{
     "Authorization": "Bearer TEST-1636818352685457-092017-ffeb98783f1bf6b11fa32dbc941c69d3-593315394",
    "Content-Type": "application/json"
-  }
-});
-
-//EL POST(el callback y la petición)
-$.post("https://api.mercadopago.com/checkout/preferences", JSON.stringify(elementosMpFinal), (respuesta, estado) => {
-  console.log(respuesta);
-  console.log(estado)
-});
+  },
+  body: JSON.stringify(elementosMpFinal)
+}).then(response => {return response.json()})
+.then(data => {window.open(data.init_point, "_blank");
+})
 }
+
