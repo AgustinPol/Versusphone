@@ -10,7 +10,7 @@ animaciones();
 let carrito = [];
 
 let total = 0;
-
+const DOMcarrito = document.getElementById("listaCarrito")
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
@@ -20,17 +20,31 @@ function agregarAlCarrito(title){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.title === title);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
-      localStorage.setItem("miCarrito", JSON.stringify(carrito));
-       $("#listaCarrito");
-       $("#listaCarrito").append(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`);
+       const miLista = $("#listaCarrito");
+       const miItem = $(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`)
+       const listaLS = $(miLista).append($(miItem));
        $(".boton-eliminar").on("click", eliminarDelCarrito);
        animacionItem();
        calcularTotal();
+       localStorage.setItem("miCarrito", JSON.stringify(carrito))
   } else{
       console.log("algo falló");
   }
 }
 console.log(carrito);
+obtenerProductosLS();
+function obtenerProductosLS() {
+
+  //Comprobar si hay algo en LS
+  if(localStorage.getItem('miCarrito') === null){
+    const productosLS = JSON.parse(localStorage.getItem("miCarrito"));
+    document.getElementById("listaCarrito");
+    $("#listaCarrito").html(productosLS);
+  }
+  else {
+    carrito = [];
+  }
+}
 
 // Función ELIMINAR DEL CARRITO//
 function eliminarDelCarrito(event) {
