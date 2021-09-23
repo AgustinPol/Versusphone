@@ -5,6 +5,7 @@
 //renderizo productos con jquery//
 $(document).ready(renderizarProductos());
 
+
 animaciones();
 
 let carrito = [];
@@ -20,31 +21,29 @@ function agregarAlCarrito(title){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.title === title);
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
-       const miLista = $("#listaCarrito");
-       const miItem = $(`<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`)
-       const listaLS = $(miLista).append($(miItem));
+      localStorage.setItem("miCarrito", JSON.stringify(carrito));
+       const miLista = document.getElementById("listaCarrito");
+       const miItem = `<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`;
+       $(miLista).append(miItem);
        $(".boton-eliminar").on("click", eliminarDelCarrito);
        animacionItem();
        calcularTotal();
-       localStorage.setItem("miCarrito", JSON.stringify(carrito))
   } else{
       console.log("algo falló");
   }
 }
 console.log(carrito);
-obtenerProductosLS();
-function obtenerProductosLS() {
 
-  //Comprobar si hay algo en LS
-  if(localStorage.getItem('miCarrito') === null){
-    const productosLS = JSON.parse(localStorage.getItem("miCarrito"));
-    document.getElementById("listaCarrito");
-    $("#listaCarrito").html(productosLS);
-  }
-  else {
-    carrito = [];
+//Function para mostrar carrito siempre (localStorage)
+function mostrarCarrito() {
+  if (localStorage.getItem("miCarrito") != null) {
+    localStorage.getItem("miCarrito");
+    carrito.forEach((producto) => {
+    const miItem = `<li class="itemList list-group-item">${JSON.stringify(producto.title)} - Precio: $${JSON.stringify(producto.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`
+    }); 
   }
 }
+
 
 // Función ELIMINAR DEL CARRITO//
 function eliminarDelCarrito(event) {
@@ -85,18 +84,18 @@ function vaciarLocalStorage(){
 
 //Función para Calcular el total//
 function calcularTotal() {
-  total = 0;
-for(let i = 0; i < carrito.length; i++){
-  let element = Number(carrito[i].unit_price * carrito[i].quantity);
-  total = total + element;
-  DOMtotal.textContent = total.toFixed(2);
-}
 //   total = 0;
-//   carrito.forEach( (productItem) => {
-//   let subtotal = Number(productItem.unit_price * productItem.quantity);
-//   total = total + subtotal;
+// for(let i = 0; i < carrito.length; i++){
+//   let element = Number(carrito[i].unit_price * carrito[i].quantity);
+//   total = total + element;
 //   DOMtotal.textContent = total.toFixed(2);
-// });
+// }
+  total = 0;
+  carrito.forEach( (productItem) => {
+  let subtotal = Number(productItem.unit_price * productItem.quantity);
+  total = total + subtotal;
+  DOMtotal.textContent = total.toFixed(2);
+});
 }
 total = 0;
 for(let i = 0; i < carrito.length; i++){
