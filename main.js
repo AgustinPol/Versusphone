@@ -1,20 +1,19 @@
 //To Do: -función eliminar del carrito
 //To Do: -función para guardar en localStorage
 //To Do: -traer del localStorage
-//To Do: -Hacer funcionar la api
-//To Do: -Hacer una animación con Jquery
 
 //renderizo productos con jquery//
 $(document).ready(renderizarProductos());
+
 animaciones();
-//CREO ARRAY CARRITO//
+
 let carrito = [];
 
-//total del carrito//
 let total = 0;
 
-//imprimimos el total del carrito//
 const DOMtotal = document.getElementById("total");
+const eventComprar = $("#btn-comprar").on("click", btnComprar);
+const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
 
 //Función agregarAlCarrito// 
 function agregarAlCarrito(title){
@@ -42,8 +41,6 @@ function eliminarDelCarrito(event) {
 };
 
 //Función btnComprar()
-$("#btn-comprar").on("click", btnComprar)
-
 function btnComprar() {
   if (carrito.length === 0) {
     console.log("el carrito esta vacío")
@@ -51,23 +48,15 @@ function btnComprar() {
     linkDePago();
   }
 }
+
 //Función VACIAR CARRITO//
-$("#boton-vaciar").on("click", vaciarCarrito);
-
 function vaciarCarrito() {
-
   if (carrito != undefined) {
-    //vacío el carrito
     carrito.splice(0, carrito.length);
-    //llamo by id a la lista
     $("#listaCarrito");
-    //saco elementos del dom
     $("#listaCarrito").html("");
-    //saco elementos del dom x 2
     $("#total").html("");
-    //calculo total//
     total = 0;
-    // console.log(total);
     vaciarLocalStorage();
     calcularTotal();
     } else {
@@ -82,38 +71,24 @@ function vaciarLocalStorage(){
 
 //Función para Calcular el total//
 function calcularTotal() {
-  
   total = 0;
-  carrito.forEach(function (valor) {
-  let parcial = (valor.unit_price);   
-  total += parcial;
+for(let i = 0; i < carrito.length; i++){
+  let element = Number(carrito[i].unit_price * carrito[i].quantity);
+  total = total + element;
   DOMtotal.textContent = total.toFixed(2);
-  // console.log(total);
-});
 }
-//function// 
-function updateShoppingCartTotal() {
-  let total = 0;
-  const carritoTotal = $('#listaCarrito');
-
-  const carritoItems = $('.itemList');
-
-  carritoItems.forEach((shoppingCartItem) => {
-    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
-      '.shoppingCartItemPrice'
-    );
-    const shoppingCartItemPrice = Number(
-      shoppingCartItemPriceElement.textContent.replace('€', '')
-    );
-    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
-      '.shoppingCartItemQuantity'
-    );
-    const shoppingCartItemQuantity = Number(
-      shoppingCartItemQuantityElement.value
-    );
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
-  });
-  shoppingCartTotal.innerHTML = `${total.toFixed(2)}€`;
+//   total = 0;
+//   carrito.forEach( (productItem) => {
+//   let subtotal = Number(productItem.unit_price * productItem.quantity);
+//   total = total + subtotal;
+//   DOMtotal.textContent = total.toFixed(2);
+// });
+}
+total = 0;
+for(let i = 0; i < carrito.length; i++){
+  let element = Number(carrito[i].unit_price * carrito[i].quantity);
+  total = total + element;
+  DOMtotal.textContent = total.toFixed(2);
 }
 
 //Hacemos animación con Jquery//
@@ -149,7 +124,7 @@ function  animacionItem() {
       <div class="card-body">
         <h5 class="card-title">${arrayProductos.title}</h5>
         <p class="card-text">${arrayProductos.description}</p>
-        <p class="card-text">$${arrayProductos.unit_price}</small></p>
+        <p class="card-text cardPrice">$${arrayProductos.unit_price}</small></p>
         <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                  <div class="text-center"><a class="btn btn-outline-dark mt-auto agregoProd" 
@@ -167,12 +142,13 @@ function  animacionItem() {
   animaciones();
 }
 
+
+
+function linkDePago() {
 //URLBASE: "https://api.mercadopago.com"
 //ENDPOINT: /checkout/preferences
 
-function linkDePago() {
   //DATOS A ENVIAR
-
 const elementosMpParcial = carrito.map(producto =>{
   return {
     "title" : producto.title,
