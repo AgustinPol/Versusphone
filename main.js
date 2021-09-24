@@ -1,10 +1,10 @@
 //To Do: -función eliminar del carrito
 //To Do: -función para guardar en localStorage
 //To Do: -traer del localStorage
+//To do: -eliminar los duplicados
 
 //renderizo productos con jquery//
 $(document).ready(renderizarProductos());
-
 
 animaciones();
 
@@ -34,21 +34,10 @@ function agregarAlCarrito(title){
 }
 console.log(carrito);
 
-//Function para mostrar carrito siempre (localStorage)
-function mostrarCarrito() {
-  if (localStorage.getItem("miCarrito") != null) {
-    localStorage.getItem("miCarrito");
-    carrito.forEach((producto) => {
-    const miItem = `<li class="itemList list-group-item">${JSON.stringify(producto.title)} - Precio: $${JSON.stringify(producto.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`
-    }); 
-  }
-}
-
-
 // Función ELIMINAR DEL CARRITO//
 function eliminarDelCarrito(event) {
   const botonEliminar = event.target;
-  carrito.splice(event.target);
+  carrito.shift(event.target);
   botonEliminar.closest(".itemList").remove();
   calcularTotal();
 };
@@ -84,24 +73,17 @@ function vaciarLocalStorage(){
 
 //Función para Calcular el total//
 function calcularTotal() {
-//   total = 0;
-// for(let i = 0; i < carrito.length; i++){
-//   let element = Number(carrito[i].unit_price * carrito[i].quantity);
-//   total = total + element;
-//   DOMtotal.textContent = total.toFixed(2);
-// }
-  total = 0;
-  carrito.forEach( (productItem) => {
-  let subtotal = Number(productItem.unit_price * productItem.quantity);
-  total = total + subtotal;
-  DOMtotal.textContent = total.toFixed(2);
-});
-}
-total = 0;
-for(let i = 0; i < carrito.length; i++){
-  let element = Number(carrito[i].unit_price * carrito[i].quantity);
-  total = total + element;
-  DOMtotal.textContent = total.toFixed(2);
+  if (carrito.length == 0) {
+    DOMtotal.textContent = "0";
+
+  } else  {
+    total = 0;
+    carrito.forEach( (productItem) => {
+    let subtotal = Number(productItem.unit_price * productItem.quantity);
+    total = total + subtotal;
+    DOMtotal.textContent = total.toFixed(2);
+  });
+  }
 }
 
 //Hacemos animación con Jquery//
