@@ -1,7 +1,3 @@
-//To Do: -función eliminar del carrito
-//To Do: -función para guardar en localStorage
-//To Do: -traer del localStorage
-//To do: -eliminar los duplicados
 
 //renderizo productos con jquery//
 $(document).ready(renderizarProductos());
@@ -11,14 +7,16 @@ animaciones();
 let carrito = [];
 
 let total = 0;
+
 const DOMcarrito = document.getElementById("listaCarrito")
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
 
-if (localStorage.getItem("miCarrito") != null) {
+if (localStorage.getItem("miCarrito")) {
+  carrito = JSON.parse(localStorage.getItem("miCarrito"));
   mostrarContenidoCarrito();
-} 
+}
 
 //Función agregarAlCarrito// 
 function agregarAlCarrito(title){
@@ -33,12 +31,11 @@ function agregarAlCarrito(title){
   }
 }
 
-const carritoLS = JSON.parse(localStorage.getItem("miCarrito"));
 
 
 function mostrarContenidoCarrito() {
-  const carritoLS = JSON.parse(localStorage.getItem("miCarrito"));
-  carritoLS.forEach(product => {
+  DOMcarrito.textContent = "";
+  carrito.forEach(product => {
     const nuevoItem = document.createElement("li");
     nuevoItem.classList.add("itemList", "list-group-item");
     nuevoItem.textContent = `${JSON.stringify(product.title)} - ${JSON.stringify(product.description)}- ${JSON.stringify(product.unit_price)}`
@@ -54,13 +51,11 @@ function mostrarContenidoCarrito() {
   });
   
 }
-//mostrar
 
 
 // Función ELIMINAR DEL CARRITO//
-function eliminarDelCarrito(product) {
-  const eliminar = carrito.findIndex(p => p.id === product.id); 
-  carrito.splice(eliminar, 1)
+function eliminarDelCarrito(event) {
+  carrito.shift(event);
   const botonEliminar = event.target;
   botonEliminar.closest(".itemList").remove();
   calcularTotal();
@@ -69,7 +64,7 @@ function eliminarDelCarrito(product) {
 
 //Función btnComprar()
 function btnComprar() {
-  if (carritoLS.length === 0) {
+  if (carrito.length === 0) {
     console.log("el carrito esta vacío")
   } else {
     linkDePago();
@@ -78,9 +73,7 @@ function btnComprar() {
 
 //Función VACIAR CARRITO//
 function vaciarCarrito() {
-  const carritoLS = JSON.parse(localStorage.getItem("miCarrito"));
-  if (carritoLS != undefined && carrito != undefined) {
-    carritoLS.splice(0, carritoLS.length);
+  if (carrito.length > 0) {
     carrito.splice(0, carrito.length);
     $("#listaCarrito");
     $("#listaCarrito").html("");
@@ -168,7 +161,7 @@ function  animacionItem() {
 function linkDePago() {
 
   //DATOS A ENVIAR
-const elementosMpParcial = carritoLS.map(producto =>{
+const elementosMpParcial = carrito.map(producto =>{
   return {
     "title" : producto.title,
     "description": producto.description,
@@ -194,5 +187,4 @@ fetch(APIURL,{
 })
 }
 
-console.log(carritoLS);
 console.log(carrito);
