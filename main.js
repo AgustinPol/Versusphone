@@ -22,9 +22,9 @@ function agregarAlCarrito(title){
   if(productoAgregado != undefined){
       carrito.push(productoAgregado);
       localStorage.setItem("miCarrito", JSON.stringify(carrito));
-       const miLista = document.getElementById("listaCarrito");
-       const miItem = `<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} <button type="button" class="btn-close boton-eliminar" aria-label="Close"></li>`;
-       $(miLista).append(miItem);
+       const miBoton = `<button type="button" class="btn-close boton-eliminar" aria-label="Close">`
+       const miItem = `<li class="itemList list-group-item">${JSON.stringify(productoAgregado.title)} - Precio: $${JSON.stringify(productoAgregado.unit_price)} - ${miBoton}</li>`;
+       $(DOMcarrito).append(miItem);
        $(".boton-eliminar").on("click", eliminarDelCarrito);
        animacionItem();
        calcularTotal();
@@ -35,12 +35,14 @@ function agregarAlCarrito(title){
 console.log(carrito);
 
 // Función ELIMINAR DEL CARRITO//
-function eliminarDelCarrito(event) {
+function eliminarDelCarrito(product) {
+  const eliminar = carrito.findIndex(p => p.id === product.id); 
+  carrito.splice(eliminar, 1)
   const botonEliminar = event.target;
-  carrito.shift(event.target);
   botonEliminar.closest(".itemList").remove();
   calcularTotal();
 };
+
 
 //Función btnComprar()
 function btnComprar() {
@@ -95,7 +97,8 @@ function animaciones() {
 //Animación items//
 function  animacionItem() {
     $(".itemList").fadeIn(300)
-                  .css("background-color","rgb(233, 211, 14)")
+                  .css("background-color","rgb(64, 107, 248)")
+                  .css("color", "white")
                   ;}
 
 
@@ -131,17 +134,13 @@ function  animacionItem() {
   </div>
 </div>`
   });
-  //utilizo sintaxis de Jquery.//
   $("#agusCard").html(mostrar);
-  //llamo la función de animaciones para que tambien se ejecuten en los filtros 
   animaciones();
 }
 
 
 
 function linkDePago() {
-//URLBASE: "https://api.mercadopago.com"
-//ENDPOINT: /checkout/preferences
 
   //DATOS A ENVIAR
 const elementosMpParcial = carrito.map(producto =>{

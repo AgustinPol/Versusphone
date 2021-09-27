@@ -1,6 +1,6 @@
 /*TAGS-DEFAULT*/
 body {
-    background-color: #000!important;
+    background-color: rgb(36, 34, 34)!important;
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
     letter-spacing: 0.2rem;
@@ -12,7 +12,7 @@ a {
 }
 
 footer {
-    background-color: rgb(44, 42, 42);
+    background-color: rgb(51, 82, 185);
 }
 
 form {
@@ -30,17 +30,29 @@ aside {
 
 /* DIVS */
 .divCarrito {
-    border: solid rgb(233, 211, 14);
+    background-color: #fff;
+    color: black;
+    border: solid rgb(51, 82, 185);
+    border-radius: 5px;
     width: 20rem;
     height: 40rem;
     margin-left: 13rem;
     margin-top: 3rem;
 }
 
+#totalCarrito {
+    margin:1rem;
+    padding: 1rem;
+    color: #fff;
+    width: 16rem;
+    height: 5rem;
+    border-radius: 0.2rem;
+    background-color: rgba(95, 95, 134, 0.808);
+}
 .divLogo {
     display: none;
     border: solid #fff;
-    background-color: rgb(44, 42, 42);
+    background-color: rgba(95, 95, 134, 0.808);
     color:#fff;
     border-radius: 10px;
     margin: 0.5rem;
@@ -60,6 +72,23 @@ aside {
     margin: 3.5rem;
 }
 
+#boton-vaciar {
+   background-color: rgb(64, 107, 248);
+   color: #fff;
+}
+
+#btn-comprar {
+    background-color: rgb(64, 107, 248);
+    color: #fff;
+    }
+
+#btn-comprar:hover,#boton-vaciar:hover {
+    background-color: rgba(3, 8, 34, 0.801);
+}
+ 
+.boton-eliminar {
+    background-color: #fff;
+}
 /*MAIN*/
 .mainClase {
     background-color: black;
@@ -82,23 +111,6 @@ aside {
     justify-content: center;
     }
 
-/*BOTONES*/    
-
-.btnFinalizar {
-    color: #fff;
-    background-color: rgb(44, 42, 42);
-    font-size: 2rem;
-    margin: 2rem;
-    margin-left: 4rem;
-    text-align: center;
-    border: solid rgb(233, 211, 14);
-    border-radius: 15px;
-
-}
-
-.btnFinalizar:hover {
-    background-color: rgba(247, 247, 0, 0.356);
-}
 /*ID DE LAS CARDS*/
 .agusCard{
     display: none;
@@ -141,7 +153,7 @@ header {
     font-size: 25px;
     width: 100%;
     height: 100%;
-    background: rgb(233, 211, 14);
+    background: rgb(51, 82, 185);
     }
     
 header label {
@@ -176,12 +188,12 @@ header label:hover {
 }
 
 .menu ul li {
-    background-color: rgb(233, 211, 14);
+    background-color: rgb(51, 82, 185);
 }
 
 .menu ul a {
     display: block;
-    color: rgb(0, 0, 0);
+    color: #fff;
     border-radius: 5px;
     margin-bottom: 1rem;
     text-decoration: none;
