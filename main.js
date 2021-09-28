@@ -52,15 +52,13 @@ function mostrarContenidoCarrito() {
   
 }
 
-
 // Función ELIMINAR DEL CARRITO//
 function eliminarDelCarrito(event) {
-  carrito.shift(event);
   const botonEliminar = event.target;
+  carrito.splice(botonEliminar, 1);
   botonEliminar.closest(".itemList").remove();
   calcularTotal();
 };
-
 
 //Función btnComprar()
 function btnComprar() {
@@ -93,12 +91,12 @@ function vaciarLocalStorage(){
 
 //Función para Calcular el total//
 function calcularTotal() {
-  const carritoLS = JSON.parse(localStorage.getItem("miCarrito"));
+  JSON.parse(localStorage.getItem("miCarrito"));
   if (carrito.length == 0) {
     DOMtotal.textContent = "0";
   } else  {
     total = 0;
-    carritoLS.forEach( (productItem) => {
+    carrito.forEach( (productItem) => {
     let subtotal = Number(productItem.unit_price * productItem.quantity);
     total = total + subtotal;
     DOMtotal.textContent = total.toFixed(2);
