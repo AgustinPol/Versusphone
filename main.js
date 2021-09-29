@@ -6,12 +6,15 @@ animaciones();
 
 let carrito = [];
 
-let total = 0;
+let total = 0; 
+
+let subtotal = 0;
 
 const DOMcarrito = document.getElementById("listaCarrito")
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
+const cantidadProd = document.getElementsByClassName("cantidad");
 
 if (localStorage.getItem("miCarrito")) {
   carrito = JSON.parse(localStorage.getItem("miCarrito"));
@@ -37,27 +40,46 @@ function mostrarContenidoCarrito() {
   DOMcarrito.textContent = "";
   carrito.forEach(product => {
     const nuevoItem = document.createElement("li");
+    const miBoton = document.createElement("button");
+    const cantidad = document.createElement("input"); 
+    cantidad.setAttribute("class", "cantidad");
+    cantidad.setAttribute("type", "number");
+    cantidad.setAttribute("value", "1");
     nuevoItem.classList.add("itemList", "list-group-item");
     nuevoItem.textContent = `${JSON.stringify(product.title)} - ${JSON.stringify(product.description)}- ${JSON.stringify(product.unit_price)}`
-    const miBoton = document.createElement("button");
     miBoton.classList.add("btn-close", "boton-eliminar");
     miBoton.setAttribute("type", "button");
     miBoton.setAttribute("aria-label", "Close");
+    miBoton.setAttribute("productoId", product.id)
+    nuevoItem.appendChild(cantidad);
     nuevoItem.appendChild(miBoton);
     DOMcarrito.appendChild(nuevoItem);
     $(".boton-eliminar").on("click", eliminarDelCarrito);
+  
     animacionItem(); 
     calcularTotal();
   });
+  }
+
+  let nuevaCantidad = document.getElementsByClassName("cantidad");
+  nuevaCantidad.addEventListener("change", cambioCantidad);
+
+  function cambioCantidad(event){ 
+    const input = event.target;
+    input.value <= 0 ? (input.value = 1) : null;
+    calcularTotal();
+  }
   
-}
+  
 
 // Función ELIMINAR DEL CARRITO//
-function eliminarDelCarrito(event) {
-  const botonEliminar = event.target;
-  carrito.splice(botonEliminar, 1);
-  botonEliminar.closest(".itemList").remove();
-  calcularTotal();
+function eliminarDelCarrito() {
+    let productoQueElimino = this.getAttribute('productoId')
+    carrito = carrito.filter(e => e.id != productoQueElimino)
+    localStorage.setItem("miCarrito", JSON.stringify(carrito));
+    mostrarContenidoCarrito();
+    calcularTotal();
+
 };
 
 //Función btnComprar()
