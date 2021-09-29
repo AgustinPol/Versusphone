@@ -1,5 +1,4 @@
 
-//renderizo productos con jquery//
 $(document).ready(renderizarProductos());
 
 animaciones();
@@ -21,7 +20,6 @@ if (localStorage.getItem("miCarrito")) {
   mostrarContenidoCarrito();
 }
 
-//Función agregarAlCarrito// 
 function agregarAlCarrito(title){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.title === title);
   if(productoAgregado != undefined){
@@ -34,42 +32,39 @@ function agregarAlCarrito(title){
   }
 }
 
-
-
 function mostrarContenidoCarrito() {
   DOMcarrito.textContent = "";
-  carrito.forEach(product => {
+
+  const carritoSinDuplicados = [...new Set(carrito)];
+
+  carritoSinDuplicados.forEach(product => {
+    arrayProductos.filter((itemProduct) => {
+      return itemProduct.id === parseInt(product);
+  });
+  const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+      return itemId === product ? total += 1 : total;
+  }, 0);
     const nuevoItem = document.createElement("li");
-    const miBoton = document.createElement("button");
-    const cantidad = document.createElement("input"); 
-    cantidad.setAttribute("class", "cantidad");
-    cantidad.setAttribute("type", "number");
-    cantidad.setAttribute("value", "1");
+    const botonEliminar = document.createElement("button");
+    const botonSumar = document.createElement("button");
+    botonSumar.classList.add("btn","btn-secundary", "btn-suma", "btn-outline-dark");
+    botonSumar.textContent  = ("+");
+    botonSumar.setAttribute("itemId", product.id);
     nuevoItem.classList.add("itemList", "list-group-item");
-    nuevoItem.textContent = `${JSON.stringify(product.title)} - ${JSON.stringify(product.description)}- ${JSON.stringify(product.unit_price)}`
-    miBoton.classList.add("btn-close", "boton-eliminar");
-    miBoton.setAttribute("type", "button");
-    miBoton.setAttribute("aria-label", "Close");
-    miBoton.setAttribute("productoId", product.id)
-    nuevoItem.appendChild(cantidad);
-    nuevoItem.appendChild(miBoton);
+    nuevoItem.textContent = `${numeroUnidadesItem} - ${JSON.stringify(product.title)} - ${JSON.stringify(product.description)}- $${JSON.stringify(product.unit_price*numeroUnidadesItem)}`
+    botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
+    botonEliminar.setAttribute("type", "button");
+    botonEliminar.textContent = ("x");
+    botonEliminar.setAttribute("productoId", product.id);
+    nuevoItem.appendChild(botonSumar);
+    nuevoItem.appendChild(botonEliminar);
     DOMcarrito.appendChild(nuevoItem);
     $(".boton-eliminar").on("click", eliminarDelCarrito);
-  
+    botonSumar.addEventListener("click", agregarAlCarrito);
     animacionItem(); 
     calcularTotal();
   });
   }
-
-  let nuevaCantidad = document.getElementsByClassName("cantidad");
-  nuevaCantidad.addEventListener("change", cambioCantidad);
-
-  function cambioCantidad(event){ 
-    const input = event.target;
-    input.value <= 0 ? (input.value = 1) : null;
-    calcularTotal();
-  }
-  
   
 
 // Función ELIMINAR DEL CARRITO//

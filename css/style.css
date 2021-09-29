@@ -34,20 +34,18 @@ aside {
     color: black;
     border: solid rgb(51, 82, 185);
     border-radius: 5px;
-    width: 25rem;
-    height: 40rem;
+    width: 28rem;
+    height: 45rem;
     margin-left: 13rem;
     margin-top: 3rem;
 }
 
-.cantidad {
-    max-width: 45px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #eee;
-    padding: 5px;
-    margin-right: 10px;
-  }
+.itemList {
+    display: none;
+    font-size: 0.8rem;
+    width: 26rem;
+    height: 6rem;
+}
 
 #totalCarrito {
     margin:1rem;
@@ -68,12 +66,8 @@ aside {
     margin-right: 9rem;
     width: 20rem;
     height: 6rem;
-    /* display: inline-block; */
 }
 
-#linkMp {
-    color: #fff;
-}
 .divInsta {
     display: inline-block;
     width: 6rem;
@@ -95,6 +89,11 @@ aside {
     background-color: rgba(3, 8, 34, 0.801);
 }
  
+.btn-suma {
+    background-color: #fff;
+    margin:1rem; 
+}
+
 .boton-eliminar {
     background-color: #fff;
 }
@@ -103,9 +102,7 @@ aside {
     background-color: black;
 }
 /*TEXTOS VARIOS*/
-.parrafoCuotas {
-    color: #fff;
-}
+
 
 .instagramText {
     color: #fff;
@@ -127,9 +124,7 @@ aside {
     color: #000;
     }
 
-.itemList {
-    display: none;
-}
+
 /*CLASS CARRITO*/    
 .carrito {
     display: inline-block;

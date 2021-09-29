@@ -19,7 +19,7 @@ class Producto{
   //PUSHEO LA INFO DE CADA CARD/PRODUCTO//
   const producto1 = new Producto("1", "Smartwatch", "Xiaomi","images/xiaomi-smartwatch.webp","smartwatch", 1, "ARS", 6999);
   arrayProductos.push(producto1);
-  const producto2 = new Producto("2", "Airpods Básicos", "Apple" , "images/airpodscomun.webp","airpods",1, "ARS", 18999);
+  const producto2 = new Producto("2", "Airpods Basic", "Apple" , "images/airpodscomun.webp","airpods",1, "ARS", 18999);
   arrayProductos.push(producto2);
   const producto3 = new Producto("3", "Airpods Pro","Apple", "images/Airpod-Pro.webp", "airpods", 1, "ARS", 32999);
   arrayProductos.push(producto3);
