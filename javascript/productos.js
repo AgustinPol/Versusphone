@@ -32,5 +32,3 @@ class Producto{
   
   //CREO CONSTANTE BASE DE DATOS PARA PODER UTILIZAR EL CARRITO//
   const baseDeDatos = [producto1, producto2, producto3, producto4, producto5, producto6];
-
-  
