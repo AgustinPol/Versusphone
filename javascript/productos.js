@@ -29,6 +29,13 @@ class Producto{
   arrayProductos.push(producto5);
   const producto6 = new Producto("6", "Airpods Max","Apple", "images/airpods-max.webp", "airpods", 1, "ARS", 129999);
   arrayProductos.push(producto6);
-  
-  //CREO CONSTANTE BASE DE DATOS PARA PODER UTILIZAR EL CARRITO//
-  const baseDeDatos = [producto1, producto2, producto3, producto4, producto5, producto6];
+  const producto7 = new Producto("7", "Watch Series 6(GPS)", "Apple", "images/watch-series-6-azul.webp", "smartwatch", 1, "ARS", 57999);
+  arrayProductos.push(producto7);
+  const producto8 = new Producto("8", "Smartwatch", "Tedge", "images/smartwatch-tedge.webp", "smartwatch", 1, "ARS", 5499);
+  arrayProductos.push(producto8);
+  const producto9 = new Producto("9", "Airpods Max", "Apple", "images/airpods-max-rosa.webp", "airpods", 1, "ARS", 109999);
+  arrayProductos.push(producto9);
+  const producto10 = new Producto("10", "Airpods Max", "Apple", "images/airpods-max-azul.webp", "airpods", 1, "ARS", 89999);
+  arrayProductos.push(producto10);
+
+  const baseDeDatos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10];

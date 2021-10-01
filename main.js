@@ -6,21 +6,17 @@ animaciones();
 let carrito = [];
 let total = 0; 
 let subtotal = 0;
-let numeroUnidadesItem;
 
 const DOMcarrito = document.getElementById("listaCarrito")
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
-const cantidadProd = document.getElementsByClassName("cantidad");
 
-if (localStorage.getItem("miCarrito")) {
-   carrito = JSON.parse(localStorage.getItem("miCarrito"));
-  mostrarContenidoCarrito();
-  document.getElementById("contador-carrito").innerHTML = carrito.length;
-}
-
-
+  if (localStorage.getItem("miCarrito")) {
+    carrito = JSON.parse(localStorage.getItem("miCarrito"));
+    mostrarContenidoCarrito();
+    document.getElementById("contador-carrito").innerHTML = carrito.length;
+  }
 
 function agregarAlCarrito(id){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.id === id);
@@ -43,7 +39,7 @@ function mostrarContenidoCarrito() {
     arrayProductos.filter((itemProduct) => {
       return itemProduct.id === parseInt(product);
   });
-  let numeroUnidadesItem = carrito.reduce((total, itemId) => {
+  const numeroUnidadesItem = carrito.reduce((total, itemId) => {
       return itemId === product ? total += 1 : total;
   }, 0);
     const nuevoItem = document.createElement("li");
