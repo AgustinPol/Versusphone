@@ -15,10 +15,12 @@ const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
 const cantidadProd = document.getElementsByClassName("cantidad");
 
 if (localStorage.getItem("miCarrito")) {
-  carrito = JSON.parse(localStorage.getItem("miCarrito"));
+   carrito = JSON.parse(localStorage.getItem("miCarrito"));
   mostrarContenidoCarrito();
   document.getElementById("contador-carrito").innerHTML = carrito.length;
 }
+
+
 
 function agregarAlCarrito(id){
   let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.id === id);
@@ -32,7 +34,6 @@ function agregarAlCarrito(id){
       console.log("algo falló");
   }
   document.getElementById("contador-carrito").innerHTML = carrito.length;
-
 }
 
 function mostrarContenidoCarrito() {
@@ -48,7 +49,7 @@ function mostrarContenidoCarrito() {
     const nuevoItem = document.createElement("li");
     const botonEliminar = document.createElement("button");
     nuevoItem.classList.add("itemCarrito", "list-group-item");
-    nuevoItem.textContent = (`Producto: ${(product.title)} ${(product.description)} Precio x ${numeroUnidadesItem} Unidades = $${(product.unit_price*numeroUnidadesItem)}`);
+    nuevoItem.textContent = (`Producto: ${(product.title)} ${(product.description)} Precio x ${numeroUnidadesItem} UNIDADES = $${(product.unit_price*numeroUnidadesItem)}`);
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
     botonEliminar.textContent = ("x");
