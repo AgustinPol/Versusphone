@@ -16,6 +16,11 @@ a {
     text-transform: none;
 }
 
+img{
+    width: 8rem;
+    height: 11rem;
+}
+
 footer {
     background-image: linear-gradient(to right, rgba(95, 95, 134, 0.808) , rgba(0, 0, 0,0.8));
 }
@@ -141,6 +146,7 @@ button {
 /*ID DE LAS CARDS*/
 .agusCard{
     display: none;
+    width: 18rem;
     margin: 1rem;
     margin-left: 3rem;
     color: #000;

@@ -1,5 +1,98 @@
 
-$(document).ready(renderizarProductos());
+//DECLARO ARRAY PRODUCTOS//
+const baseDeDatos=[
+  {
+      id:1,
+      title:"Smartwatch",
+      description:"Xiaomi",
+      picture_url:"images/xiaomi-smartwatch.webp",
+      category_id:"smartwatch",
+      quantity:1,
+      unit_price: 6999
+  },
+  {
+      id:2,
+      title:"Airpods Basic",
+      description:"Apple",
+      picture_url:"images/airpodscomun.webp",
+      category_id:"airpods",
+      quantity:1,
+      unit_price: 18999
+  },
+  {
+      id:3,
+      title:"Airpods Pro",
+      description:"Apple",
+      picture_url:"images/Airpod-Pro.webp",
+      category_id:"airpods",
+      quantity:1,
+      unit_price: 32999
+  },
+  {
+      id:4,
+      title:"Smartwatch series 3",
+      description:"Apple",
+      picture_url:"images/Smartwatch-apple.webp",
+      category_id:"smartwatch",
+      quantity:1,
+      unit_price: 32999
+  },
+  {
+      id:5,
+      title:"Smartwatch Sense",
+      description:"Fitbit",
+      picture_url:"images/smartwatch-fitbit.webp",
+      category_id:"smartwatch",
+      quantity:1,
+      unit_price: 46999
+  },
+  {
+      id:6,
+      title:"Airpods Max",
+      description:"Apple",
+      picture_url:"images/airpods-max.webp",
+      category_id:"airpods",
+      quantity:1,
+      unit_price: 129999
+  },
+  {
+      id:7,
+      title:"Watch Series 6(GPS)",
+      description:"Apple",
+      picture_url:"images/watch-series-6-azul.webp",
+      category_id:"smartwatch",
+      quantity:1,
+      unit_price: 57999
+  },
+  {
+      id:8,
+      title:"Smartwatch",
+      description:"Tedge",
+      picture_url:"images/smartwatch-tedge.webp",
+      category_id:"smartwatch",
+      quantity:1,
+      unit_price: 5499
+  },
+  {
+      id:9,
+      title:"Airpods Max",
+      description:"Apple",
+      picture_url:"images/airpods-max-rosa.webp",
+      category_id:"airpods",
+      quantity:1,
+      unit_price: 109999
+  },
+  {
+      id:10,
+      title:"Airpods Max",
+      description:"Apple",
+      picture_url:"images/airpods-max-azul.webp",
+      category_id:"airpods",
+      quantity:1,
+      unit_price: 89999
+  }
+];
+
 
 animaciones();
 
@@ -7,7 +100,8 @@ let carrito = [];
 let total = 0; 
 let subtotal = 0;
 
-const DOMcarrito = document.getElementById("listaCarrito")
+const DOMCards = document.getElementById("mainCard");
+const DOMcarrito = document.getElementById("listaCarrito");
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
@@ -18,50 +112,92 @@ const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
     document.getElementById("contador-carrito").innerHTML = carrito.length;
   }
 
-function agregarAlCarrito(id){
-  let productoAgregado = baseDeDatos.find(arrayProductos => arrayProductos.id === id);
-  if(productoAgregado != undefined){
-      carrito.push(productoAgregado);
-      localStorage.setItem("miCarrito", JSON.stringify(carrito));
-      $('.toast').toast('show');
-      mostrarContenidoCarrito();
-      calcularTotal();
-  } else{
-      console.log("algo falló");
-  }
+  //filtramos los productos por categoría
+ function renderizarProductos(filtro = "default") {
+  let nuevosProductos = (filtro !== "default") ? 
+  baseDeDatos.filter(product => product.category_id == filtro) :
+  baseDeDatos;
+  // CREO MIS CARDS CON JS //
+  nuevosProductos.forEach((product) => {
+ // Estructura
+ const nodoPadre = document.createElement("div");
+ nodoPadre.classList.add("card", "col-lg-3", "agusCard");
+ // Body
+ const miNodoCardBody = document.createElement("div");
+ miNodoCardBody.classList.add("card-body");
+ // Titulo
+ const miNodoTitle = document.createElement("h5");
+ miNodoTitle.classList.add("card-title");
+ miNodoTitle.textContent =  `${product.title} - ${product.description}`;
+ // Imagen
+ const miNodoImagen = document.createElement("img");
+ miNodoImagen.classList.add("img-fluid");
+ miNodoImagen.setAttribute("src", product.picture_url);
+ // Precio
+ const miNodoPrecio = document.createElement("p");
+ miNodoPrecio.classList.add("card-text");
+ miNodoPrecio.textContent = product.unit_price + "$(ars)";
+ // Boton 
+ const miNodoBoton = document.createElement("button");
+ miNodoBoton.classList.add("btn", "btn-outline-dark", "mt-auto");
+ miNodoBoton.textContent = "Agregar al Carrito";
+ miNodoBoton.setAttribute("idCard", product.id);
+ miNodoBoton.addEventListener("click", agregarAlCarrito);
+ // Insertamos
+ miNodoCardBody.appendChild(miNodoImagen);
+ miNodoCardBody.appendChild(miNodoTitle);
+ miNodoCardBody.appendChild(miNodoPrecio);
+ miNodoCardBody.appendChild(miNodoBoton);
+ nodoPadre.appendChild(miNodoCardBody);
+ DOMCards.appendChild(nodoPadre);
+  });
+  animaciones();
+}
+
+function agregarAlCarrito(e){
+  carrito.push(e.target.getAttribute("idCard"))
+  localStorage.setItem("miCarrito", JSON.stringify(carrito));
+  calcularTotal();
+  mostrarContenidoCarrito();
   document.getElementById("contador-carrito").innerHTML = carrito.length;
 }
 
 function mostrarContenidoCarrito() {
   DOMcarrito.textContent = "";
   const quitamosDuplicados = [...new Set(carrito)];
-  quitamosDuplicados.forEach(product => {
-    arrayProductos.filter((itemProduct) => {
-      return itemProduct.id === parseInt(product);
+
+  quitamosDuplicados.forEach((productCarro) => {
+
+  const miProducto = baseDeDatos.filter((productBaseDeDatos) => {
+
+      return productBaseDeDatos.id === parseInt(productCarro);
   });
   const numeroUnidadesItem = carrito.reduce((total, itemId) => {
-      return itemId === product ? total += 1 : total;
+      return itemId === productCarro ? total += 1 : total;
   }, 0);
     const nuevoItem = document.createElement("li");
     const botonEliminar = document.createElement("button");
     nuevoItem.classList.add("itemCarrito", "list-group-item");
-    nuevoItem.textContent = (`Producto: ${(product.title)} ${(product.description)} Precio x ${numeroUnidadesItem} UNIDADES = $${(product.unit_price*numeroUnidadesItem)}`);
+    nuevoItem.textContent = `Producto: ${(miProducto[0].title)} ${(miProducto[0].description)} Precio x ${numeroUnidadesItem} UNIDADES = $${(miProducto[0].unit_price*numeroUnidadesItem)}`;
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
     botonEliminar.textContent = ("x");
-    botonEliminar.setAttribute("productoId", product.id);
+    botonEliminar.dataset.productCarro = productCarro;
+    botonEliminar.setAttribute("productoId", productCarro.id);
+    botonEliminar.addEventListener("click", eliminarDelCarrito);
     nuevoItem.appendChild(botonEliminar);
     DOMcarrito.appendChild(nuevoItem);
-    botonEliminar.addEventListener("click", eliminarDelCarrito);
     animacionItem(); 
     calcularTotal();
   });
   }
 
 // Función ELIMINAR DEL CARRITO//
-function eliminarDelCarrito() {
-    let productoQueElimino = this.getAttribute('productoId')
-    carrito = carrito.filter(e => e.id != productoQueElimino)
+function eliminarDelCarrito(e) {
+    const idEliminado = e.target.dataset.productCarro;
+    carrito = carrito.filter((carritoId) => {
+      return carritoId !== idEliminado;
+      });
     localStorage.setItem("miCarrito", JSON.stringify(carrito));
     mostrarContenidoCarrito();
     calcularTotal();
@@ -87,6 +223,7 @@ function vaciarCarrito() {
     $("#total").html("");
     total = 0;
     vaciarLocalStorage();
+    mostrarContenidoCarrito();
     calcularTotal();
     } 
   document.getElementById("contador-carrito").innerHTML = carrito.length;
@@ -106,13 +243,16 @@ function calcularTotal() {
   } else  {
     total = 0;
     carrito.forEach( (productItem) => {
-    let subtotal = Number(productItem.unit_price * productItem.quantity);
-    total = total + subtotal;
+    const subtotal = baseDeDatos.filter((itemsCards) => {
+      return itemsCards.id === parseInt(productItem);
+    })
+    total = total + subtotal[0].unit_price;
     DOMtotal.textContent = total.toFixed(2);
   });
   }
 }
 
+DOMtotal.textContent = total.toFixed(2);
 //Hacemos animación con Jquery//
 function animaciones() {
   $("#divMiLogo").show(500);
@@ -126,39 +266,7 @@ function  animacionItem() {
                   .css("color", "white")
                   ;}
 
-//filtramos los productos por categoría
- function renderizarProductos(filtro = 'default') {
-  let nuevosProductos = (filtro !== "default") ? 
-  baseDeDatos.filter(arrayProductos => arrayProductos.category_id == filtro) :
-  baseDeDatos;
-  // CREO MIS CARDS CON JS //
-  let mostrar=``;
-  nuevosProductos.forEach((arrayProductos) => {
-  mostrar+=
-  `<div class="card mb-3 agusCard" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="${arrayProductos.picture_url}" class="img-fluid rounded-start" alt="imagen-producto">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h6 class="card-title">${arrayProductos.title}</h6>
-        <p class="card-text">${arrayProductos.description}</p>
-        <p class="card-text cardPrice">$${arrayProductos.unit_price}</small></p>
-        <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                 <div class="text-center"><a class="btn btn-outline-dark mt-auto agregoProd" 
-                 onclick="agregarAlCarrito('${arrayProductos.id}')">Agregar al carrito</a>
-                 </div>
-            </div>
-      </div>
-    </div>
-  </div>
-</div>`
-  });
-  $("#mainCard").html(mostrar);
-  animaciones();
-}
+
 //Función Del Fetch de la Api de Mercado Pago
 function linkDePago() {
 
@@ -190,3 +298,6 @@ fetch(APIURL,{
 }
 
 console.log(carrito);
+
+$(document).ready(renderizarProductos());
+
