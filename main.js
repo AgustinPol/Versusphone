@@ -293,6 +293,6 @@ fetch(APIURL,{
 });
 }
 
-console.log(carrito);
+// console.log(carrito);
 
 renderizarProductos();
