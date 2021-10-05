@@ -78,7 +78,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
+  <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Carrito</h5>
@@ -97,11 +97,20 @@
         
         <button id="boton-vaciar" class="btn btn-outline-dark">Vaciar Carrito</button>
         <button id="btn-comprar" class="btn btn-outline-dark">Ir al link de pago</button>
+
+        <form id="formulario">
+          <input type="text" placeholder="Ingrese su nombre" id="nombre"><br>
+          <input type="number" placeholder="Ingrese su edad" id="edad"><br>     
+          <input type="number" placeholder="Ingrese su dni" id="dni"><br>
+          <input type="text" placeholder="Ingrese su dirección" id="direccion"><br>
+          <input type="email" placeholder="Ingrese su email" id="email"><br>
+          <input type="number" placeholder="Ingrese su telefóno" id="telefono"><br>
+          <button type="button" onclick="validarCliente()">Enviar</button>
+        </form>
      </div>
       </div>
       <div class="modal-footer">
         <button type="button" id="boton-seguir" class="btn btn-outline-dark" data-bs-dismiss="modal">Seguir comprando</button>
-        
       </div>
     </div>
   </div>
