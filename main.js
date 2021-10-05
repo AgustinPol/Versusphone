@@ -105,6 +105,7 @@ const DOMcarrito = document.getElementById("listaCarrito");
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
+const miToast = $(".toast")
 
   if (localStorage.getItem("miCarrito")) {
     carrito = JSON.parse(localStorage.getItem("miCarrito"));
@@ -117,46 +118,42 @@ const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
   let nuevosProductos = (filtro !== "default") ? 
   baseDeDatos.filter(product => product.category_id == filtro) :
   baseDeDatos;
+  DOMCards.textContent = "";
   // CREO MIS CARDS CON JS //
   nuevosProductos.forEach((product) => {
- // Estructura
  const nodoPadre = document.createElement("div");
  nodoPadre.classList.add("card", "col-lg-3", "agusCard");
- // Body
- const miNodoCardBody = document.createElement("div");
- miNodoCardBody.classList.add("card-body");
- // Titulo
- const miNodoTitle = document.createElement("h5");
- miNodoTitle.classList.add("card-title");
- miNodoTitle.textContent =  `${product.title} - ${product.description}`;
- // Imagen
- const miNodoImagen = document.createElement("img");
- miNodoImagen.classList.add("img-fluid");
- miNodoImagen.setAttribute("src", product.picture_url);
- // Precio
- const miNodoPrecio = document.createElement("p");
- miNodoPrecio.classList.add("card-text");
- miNodoPrecio.textContent = product.unit_price + "$(ars)";
- // Boton 
- const miNodoBoton = document.createElement("button");
- miNodoBoton.classList.add("btn", "btn-outline-dark", "mt-auto");
- miNodoBoton.textContent = "Agregar al Carrito";
- miNodoBoton.setAttribute("idCard", product.id);
- miNodoBoton.addEventListener("click", agregarAlCarrito);
- // Insertamos
- miNodoCardBody.appendChild(miNodoImagen);
- miNodoCardBody.appendChild(miNodoTitle);
- miNodoCardBody.appendChild(miNodoPrecio);
- miNodoCardBody.appendChild(miNodoBoton);
- nodoPadre.appendChild(miNodoCardBody);
+ const nodoCardBody = document.createElement("div");
+ nodoCardBody.classList.add("card-body");
+ const nodoTitle = document.createElement("h5");
+ nodoTitle.classList.add("card-title");
+ nodoTitle.textContent =  `${product.title} - ${product.description}`;
+ const nodoImagen = document.createElement("img");
+ nodoImagen.classList.add("img-fluid");
+ nodoImagen.setAttribute("src", product.picture_url);
+ const nodoPrecio = document.createElement("p");
+ nodoPrecio.classList.add("card-text");
+ nodoPrecio.textContent = "$" + product.unit_price;
+ const botonQuitar = document.createElement("button");
+ botonQuitar.classList.add("btn", "btn-outline-dark", "mt-auto");
+ botonQuitar.textContent = "Agregar al Carrito";
+ botonQuitar.setAttribute("idCard", product.id);
+ botonQuitar.addEventListener("click", agregarAlCarrito);
+ nodoCardBody.appendChild(nodoImagen);
+ nodoCardBody.appendChild(nodoTitle);
+ nodoCardBody.appendChild(nodoPrecio);
+ nodoCardBody.appendChild(botonQuitar);
+ nodoPadre.appendChild(nodoCardBody);
  DOMCards.appendChild(nodoPadre);
+ animaciones();
   });
-  animaciones();
+
 }
 
 function agregarAlCarrito(e){
   carrito.push(e.target.getAttribute("idCard"))
   localStorage.setItem("miCarrito", JSON.stringify(carrito));
+  $('.toast').toast('show');
   calcularTotal();
   mostrarContenidoCarrito();
   document.getElementById("contador-carrito").innerHTML = carrito.length;
@@ -178,7 +175,7 @@ function mostrarContenidoCarrito() {
     const nuevoItem = document.createElement("li");
     const botonEliminar = document.createElement("button");
     nuevoItem.classList.add("itemCarrito", "list-group-item");
-    nuevoItem.textContent = `Producto: ${(miProducto[0].title)} ${(miProducto[0].description)} Precio x ${numeroUnidadesItem} UNIDADES = $${(miProducto[0].unit_price*numeroUnidadesItem)}`;
+    nuevoItem.textContent = `Producto: ${(miProducto[0].title)} ${(miProducto[0].description)} x ${numeroUnidadesItem} UNIDADES = $${(miProducto[0].unit_price*numeroUnidadesItem)}`;
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
     botonEliminar.textContent = ("x");
@@ -270,7 +267,6 @@ function  animacionItem() {
 //Función Del Fetch de la Api de Mercado Pago
 function linkDePago() {
 
-  
 const elementosMpParcial = carrito.map(producto =>{
   return {
     "title" : producto.title,
@@ -289,15 +285,14 @@ fetch(APIURL,{
   method: "POST",
   headers:{
     "Authorization": "Bearer TEST-1636818352685457-092017-ffeb98783f1bf6b11fa32dbc941c69d3-593315394",
-   "Content-Type": "application/json"
+   "Content-Type": "application/json",   
   },
   body: JSON.stringify(elementosMpFinal)
 }).then(response => {return response.json()})
 .then(data => {window.open(data.init_point, "_blank");
-})
+});
 }
 
 console.log(carrito);
 
-$(document).ready(renderizarProductos());
-
+renderizarProductos();

@@ -4,7 +4,7 @@ body {
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
     letter-spacing: 0.2rem;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 h5 {
@@ -147,9 +147,9 @@ button {
 .agusCard{
     display: none;
     width: 18rem;
-    margin: 1rem;
-    margin-left: 3rem;
+    margin: 4rem;
     color: #000;
+    text-align: center;
     }
 
 
