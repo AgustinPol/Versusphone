@@ -31,12 +31,13 @@ class Cliente{
                    direccion: direccion,
                    email: email,
                    telefono: telefono}
-    
+      $(".datosCorrectos").show();
       arrayClientes.push(new Cliente(nombreCompleto, edad, dni, direccion, email, telefono));
       localStorage.setItem("clientes", JSON.stringify(arrayClientes));
       console.log(JSON.stringify(`${datosCliente.nombreCompleto} ya tenemos tus datos, gracias por tu compra!`));
     } else {
-      console.log("Disculpe, o su teléfono no es válido, o no está en su mayoría de edad para continuar.");
+        $(".datosIncorrectos").fadeIn(1000);
+        $(".datosIncorrectos").fadeOut(1000);
     }
   }
   

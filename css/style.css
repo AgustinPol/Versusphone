@@ -1,10 +1,8 @@
-/*TAGS-DEFAULT*/
 body {
     background-image: linear-gradient(to right, rgba(206, 206, 228, 0.808) , rgba(0, 0, 0,0.8))!important;;
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
     letter-spacing: 0.2rem;
-    /* text-align: justify; */
 }
 
 h5 {
@@ -29,22 +27,29 @@ form {
     margin: 1rem;
 }
 
+input {
+    margin:0.5rem;
+}
+
 nav ul li a {
     color: #fff!important;
     border-radius: 5px;
     margin-right: 2rem;
 }
 
-/* DIVS */
+button {
+    margin: 1rem;
+}
+
+.datosCorrectos,.datosIncorrectos {
+    display: none;
+}
+
 .divCarrito {
     background-color: #fff;
     color: black;
-    width: 35rem;
-    height: 45rem;
-}
-
-button {
-    margin: 1rem;
+    width: 70rem;
+    height: 50rem;
 }
 
 .miToast {
@@ -96,20 +101,10 @@ button {
     text-align: end;
 }
 
-#boton-vaciar {
+#boton-vaciar,#btn-validar,#btn-comprar,#boton-seguir {
    background-color: rgb(64, 107, 248);
    color: #fff;
 }
-
-#btn-comprar {
-    background-color: rgb(64, 107, 248);
-    color: #fff;
-    }
-
- #boton-seguir {
-    background-color:  rgb(64, 107, 248);
-    color: #fff;
- }   
 
 #btn-comprar:hover,#boton-vaciar:hover,#boton-seguir:hover {
     background-color: rgba(3, 8, 34, 0.801);
@@ -148,6 +143,8 @@ button {
     display: none;
     width: 18rem;
     margin: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     color: #000;
     text-align: center;
     }

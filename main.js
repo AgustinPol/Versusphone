@@ -1,6 +1,6 @@
 
 //DECLARO ARRAY PRODUCTOS//
-const baseDeDatos=[
+const baseDeDatos = [
   {
       id:1,
       title:"Smartwatch",
@@ -93,12 +93,12 @@ const baseDeDatos=[
   }
 ];
 
-
 animaciones();
 
 let carrito = [];
 let total = 0; 
 let subtotal = 0;
+
 
 const DOMCards = document.getElementById("mainCard");
 const DOMcarrito = document.getElementById("listaCarrito");
@@ -106,6 +106,8 @@ const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
 const miToast = $(".toast")
+
+renderizarProductos();
 
   if (localStorage.getItem("miCarrito")) {
     carrito = JSON.parse(localStorage.getItem("miCarrito"));
@@ -134,15 +136,15 @@ const miToast = $(".toast")
  const nodoPrecio = document.createElement("p");
  nodoPrecio.classList.add("card-text");
  nodoPrecio.textContent = "$" + product.unit_price;
- const botonQuitar = document.createElement("button");
- botonQuitar.classList.add("btn", "btn-outline-dark", "mt-auto");
- botonQuitar.textContent = "Agregar al Carrito";
- botonQuitar.setAttribute("idCard", product.id);
- botonQuitar.addEventListener("click", agregarAlCarrito);
+ const botonAdd = document.createElement("button");
+ botonAdd.classList.add("btn", "btn-outline-dark", "mt-auto");
+ botonAdd.textContent = "Agregar al Carrito";
+ botonAdd.setAttribute("idCard", product.id);
+ botonAdd.addEventListener("click", agregarAlCarrito);
  nodoCardBody.appendChild(nodoImagen);
  nodoCardBody.appendChild(nodoTitle);
  nodoCardBody.appendChild(nodoPrecio);
- nodoCardBody.appendChild(botonQuitar);
+ nodoCardBody.appendChild(botonAdd);
  nodoPadre.appendChild(nodoCardBody);
  DOMCards.appendChild(nodoPadre);
  animaciones();
@@ -178,7 +180,7 @@ function mostrarContenidoCarrito() {
     nuevoItem.textContent = `Producto: ${(miProducto[0].title)} ${(miProducto[0].description)} x ${numeroUnidadesItem} UNIDADES = $${(miProducto[0].unit_price*numeroUnidadesItem)}`;
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
-    botonEliminar.textContent = ("x");
+    botonEliminar.textContent = ("x"); 
     botonEliminar.dataset.productCarro = productCarro;
     botonEliminar.setAttribute("productoId", productCarro.id);
     botonEliminar.addEventListener("click", eliminarDelCarrito);
@@ -202,12 +204,12 @@ function eliminarDelCarrito(e) {
 
 };
 
-//Función del boton generar link de Mp
+// Función del boton generar link de Mp
 function btnComprar() {
   if (carrito.length === 0) {
     console.log("No tienes productos en tu carrito");
   } else {
-    linkDePago();
+    // linkDePago();
   }
 }
 
@@ -295,4 +297,3 @@ fetch(APIURL,{
 
 // console.log(carrito);
 
-renderizarProductos();
