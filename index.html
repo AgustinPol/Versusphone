@@ -48,7 +48,7 @@
 
             <div>
               <form class="d-flex">
-                <button class="btn btn-outline-dark carritoLogo" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button data-bs-toggle="modal" id="carritoModalBoton" class="btn btn-outline-dark carritoLogo">
                     <i class="bi-cart-fill me-1"></i>
                     Carrito
                     <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -77,11 +77,11 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalCarritoShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Carrito</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Tu Carrito</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -96,10 +96,11 @@
            <p id="totalCarrito" class="text-right">Total: <span id="total"></span> $(ars);</p>
           </div>         
           <button id="boton-vaciar" class="btn btn-outline-dark">Vaciar Carrito</button>
-
+          <button id="boton-comprar" class="btn btn-outline-dark">Comprar</button>
         </div>
       
           <div class="divForm col-lg-6">
+            <h2>Llena el formulario para continuar la compra</h2>
             <form id="formulario">
               <input class="form-control" type="text" placeholder="Ingrese su nombre" id="nombre"><br>
               <input class="form-control" type="number" placeholder="Ingrese su edad" id="edad"><br>     
@@ -122,11 +123,30 @@
         
           </div>
           
-      </div> 
       </div>
+      
+     </div>
       </div>
       <div class="modal-footer">
         <button type="button" id="boton-seguir" class="btn btn-outline-dark" data-bs-dismiss="modal">Volver al sitio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalCarritoVacio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Estimado Cliente!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5>Su carrito esta vacío!</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

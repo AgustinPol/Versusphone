@@ -105,7 +105,10 @@ const DOMcarrito = document.getElementById("listaCarrito");
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
 const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
-const miToast = $(".toast")
+const miToast = $(".toast");
+const eventModal = $("#carritoModalBoton").on("click", modalCarrito);
+const eventForm = $("#boton-comprar").on("click", mostrarForm);
+
 
 renderizarProductos();
 
@@ -153,9 +156,9 @@ renderizarProductos();
 }
 
 function agregarAlCarrito(e){
-  carrito.push(e.target.getAttribute("idCard"))
+  carrito.push(e.target.getAttribute("idCard"));
   localStorage.setItem("miCarrito", JSON.stringify(carrito));
-  $('.toast').toast('show');
+  $(".toast").toast("show");
   calcularTotal();
   mostrarContenidoCarrito();
   document.getElementById("contador-carrito").innerHTML = carrito.length;
@@ -204,12 +207,28 @@ function eliminarDelCarrito(e) {
 
 };
 
+//function para mostrar modal
+function modalCarrito(e) {
+  e.preventDefault();
+if (carrito.length == 0) {
+  $("#modalCarritoVacio").modal("show");
+} else if (carrito.length > 0) {
+  $("#modalCarritoShow").modal("show");
+}
+}
+
+
+
+function mostrarForm() {
+  $(".divForm").fadeIn(1000);
+} 
+
 // Función del boton generar link de Mp
 function btnComprar() {
   if (carrito.length === 0) {
-    console.log("No tienes productos en tu carrito");
+  $("#modalCarritoVacio").modal("show");
   } else {
-    // linkDePago();
+    linkDePago();
   }
 }
 
@@ -295,5 +314,5 @@ fetch(APIURL,{
 });
 }
 
-// console.log(carrito);
+console.log(carrito);
 

@@ -45,6 +45,10 @@ button {
     display: none;
 }
 
+.divForm {
+    display: none;
+}
+
 .divCarrito {
     background-color: #fff;
     color: black;
@@ -101,9 +105,10 @@ button {
     text-align: end;
 }
 
-#boton-vaciar,#btn-validar,#btn-comprar,#boton-seguir {
-   background-color: rgb(64, 107, 248);
-   color: #fff;
+#boton-vaciar,#btn-validar,#btn-comprar,#boton-seguir,#boton-comprar{
+    background-image: linear-gradient(to right, rgba(9, 120, 211, 0.808) , rgba(0, 0, 0,0.8));
+    color: #fff;
+    height: 3rem;
 }
 
 #btn-comprar:hover,#boton-vaciar:hover,#boton-seguir:hover {
