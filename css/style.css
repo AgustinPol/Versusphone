@@ -1,8 +1,10 @@
+/*TAGS-DEFAULT*/
 body {
     background-image: linear-gradient(to right, rgba(206, 206, 228, 0.808) , rgba(0, 0, 0,0.8))!important;;
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
     letter-spacing: 0.2rem;
+    text-align: justify;
 }
 
 h5 {
@@ -14,11 +16,6 @@ a {
     text-transform: none;
 }
 
-img{
-    width: 8rem;
-    height: 11rem;
-}
-
 footer {
     background-image: linear-gradient(to right, rgba(95, 95, 134, 0.808) , rgba(0, 0, 0,0.8));
 }
@@ -27,39 +24,24 @@ form {
     margin: 1rem;
 }
 
-input {
-    margin:0.5rem;
-}
-
 nav ul li a {
     color: #fff!important;
     border-radius: 5px;
     margin-right: 2rem;
 }
 
-button {
-    margin: 1rem;
-}
-
-.datosCorrectos,.datosIncorrectos {
-    display: none;
-}
-
-.divForm {
-    display: none;
-}
-
+/* DIVS */
 .divCarrito {
     background-color: #fff;
     color: black;
     width: 70rem;
-    height: 50rem;
+    height: 45rem;
+    margin: 2rem;
 }
 
-.miToast {
-    background-image: linear-gradient(to left, rgba(241, 224, 147, 0.808) , rgba(29, 26, 26, 0.8))
+button {
+    margin: 1rem;
 }
-
 
 .itemList {
     display: none;
@@ -105,10 +87,9 @@ button {
     text-align: end;
 }
 
-#boton-vaciar,#btn-validar,#btn-comprar,#boton-seguir,#boton-comprar{
-    background-image: linear-gradient(to right, rgba(9, 120, 211, 0.808) , rgba(0, 0, 0,0.8));
+#boton-vaciar,#btn-comprar,#boton-seguir,#boton-comprar,#btn-validar {
+    background-image: linear-gradient(to right, rgba(35, 129, 192, 0.808) , rgba(0, 0, 0,0.8));
     color: #fff;
-    height: 3rem;
 }
 
 #btn-comprar:hover,#boton-vaciar:hover,#boton-seguir:hover {
@@ -129,11 +110,6 @@ button {
 .boton-eliminar {
     background-color: #fff;
 }
-/*MAIN*/
-.mainClase {
-    background-color: black;
-}
-/*TEXTOS VARIOS*/
 
 .logo {
     margin: auto;
@@ -143,17 +119,20 @@ button {
     justify-content: center;
     }
 
-/*ID DE LAS CARDS*/
 .agusCard{
-    display: none;
-    width: 18rem;
-    margin: 4rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    display: block;
+    margin: 1rem;
+    margin-left: 2rem;
     color: #000;
-    text-align: center;
     }
 
+.divForm {
+    display: none;
+}    
+
+.datosCorrectos,.datosIncorrectos {
+    display: none;
+}
 
 /*CLASS CARRITO*/    
 .carrito {

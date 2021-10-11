@@ -48,7 +48,7 @@
 
             <div>
               <form class="d-flex">
-                <button data-bs-toggle="modal" id="carritoModalBoton" class="btn btn-outline-dark carritoLogo">
+                <button id="carritoModalBoton" class="btn btn-outline-dark carritoLogo" type="button" data-bs-toggle="modal">
                     <i class="bi-cart-fill me-1"></i>
                     Carrito
                     <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -76,8 +76,8 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalCarritoShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!--MODAL CARRITO LLENO-->
+<div class="modal fade" id="idModalCarrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
@@ -123,10 +123,10 @@
         
           </div>
           
-      </div>
+         </div>
       
-     </div>
-      </div>
+        </div>
+       </div>
       <div class="modal-footer">
         <button type="button" id="boton-seguir" class="btn btn-outline-dark" data-bs-dismiss="modal">Volver al sitio</button>
       </div>
@@ -134,7 +134,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!--MODAL CARRITO VACÍO-->
 <div class="modal fade" id="modalCarritoVacio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -152,19 +152,24 @@
   </div>
 </div>
 
-<!--Toast BS "AGREGAR"-->
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="liveToast" class="toast hide miToast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <strong class="me-auto">Mensaje</strong>
-      <!-- <small class="text-black-50">Mensaje</small> -->
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body text-black-50">
-      Agregó un producto nuevo al carrito
+<!--MODAL CAPTURA DE DATOS-->
+<div class="modal fade" id="capturaDatosCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Estimad@ Cliente!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5> Ya tenemos sus datos para el envío!</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>
+
 
 <footer>
   <div class="container-lg">

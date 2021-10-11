@@ -1,4 +1,3 @@
-
 //DECLARACIÓN DEL ARRAY//
 const arrayClientes = [];
 
@@ -34,7 +33,7 @@ class Cliente{
       $(".datosCorrectos").show();
       arrayClientes.push(new Cliente(nombreCompleto, edad, dni, direccion, email, telefono));
       localStorage.setItem("clientes", JSON.stringify(arrayClientes));
-      console.log(JSON.stringify(`${datosCliente.nombreCompleto} ya tenemos tus datos, gracias por tu compra!`));
+      $("#capturaDatosCliente").modal("show");
     } else {
         $(".datosIncorrectos").fadeIn(1000);
         $(".datosIncorrectos").fadeOut(1000);
