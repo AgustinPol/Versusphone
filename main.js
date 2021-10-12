@@ -14,7 +14,6 @@ class Producto{
     }
   }
   
-  
   //PUSHEO LA INFO DE CADA CARD/PRODUCTO//
   const producto1 = new Producto("1", "Smartwatch", "Xiaomi","images/xiaomi-smartwatch.webp","smartwatch", 1, "ARS", 6999);
   baseDeDatos.push(producto1);
@@ -26,15 +25,15 @@ class Producto{
   baseDeDatos.push(producto4);
   const producto5 = new Producto("5", "Smartwatch Sense", "Fitbit", "images/smartwatch-fitbit.webp", "smartwatch",1, "ARS", 46999);
   baseDeDatos.push(producto5);
-  const producto6 = new Producto("6", "Airpods Max","Apple", "images/airpods-max.webp", "airpods", 1, "ARS", 129999);
+  const producto6 = new Producto("6", "Airpods Max","Apple", "images/airpods-max.webp", "airpods", 1, "ARS", 114999);
   baseDeDatos.push(producto6);
   const producto7 = new Producto("7", "Watch Series 6(GPS)", "Apple", "images/watch-series-6-azul.webp", "smartwatch", 1, "ARS", 57999);
   baseDeDatos.push(producto7);
   const producto8 = new Producto("8", "Smartwatch", "Tedge", "images/smartwatch-tedge.webp", "smartwatch", 1, "ARS", 5499);
   baseDeDatos.push(producto8);
-  const producto9 = new Producto("9", "Airpods Max", "Apple", "images/airpods-max-rosa.webp", "airpods", 1, "ARS", 109999);
+  const producto9 = new Producto("9", "Airpods Max", "Apple", "images/airpods-max-rosa.webp", "airpods", 1, "ARS", 94999);
   baseDeDatos.push(producto9);
-  const producto10 = new Producto("10", "Airpods Max", "Apple", "images/airpods-max-azul.webp", "airpods", 1, "ARS", 89999);
+  const producto10 = new Producto("10", "Airpods Max", "Apple", "images/airpods-max-azul.webp", "airpods", 1, "ARS", 114999);
   baseDeDatos.push(producto10);
 
 $(document).ready(renderizarProductos());
@@ -61,27 +60,16 @@ const eventForm = $("#boton-comprar").on("click", mostrarForm);
     document.getElementById("contador-carrito").innerHTML = carrito.reduce((acc, el)=> acc + el.quantity,0);
   }
 
-// function agregarAlCarrito(id){
-//   let productoAgregado = baseDeDatos.find(product => product.id === id);
-//   if(productoAgregado != undefined){
-//       carrito.push(productoAgregado);
-//       localStorage.setItem("miCarrito", JSON.stringify(carrito));
-//       mostrarContenidoCarrito();
-//       calcularTotal();
-//   } 
-//   document.getElementById("contador-carrito").innerHTML = carrito.length;
-// }
-// contadorCarrito.innerText = carritodeCompras.reduce((acc, el)=> acc + el.cantidad,0)
-
 function agregarAlCarrito(id) {
-  let repetido = carrito.find(prodR => prodR.id == id);
-  if (repetido) {
-    repetido.quantity = repetido.quantity + 1;
+  let productoRepetido = carrito.find(produR => produR.id == id);
+  if (productoRepetido) {
+    productoRepetido.quantity = productoRepetido.quantity + 1;
     localStorage.setItem("miCarrito", JSON.stringify(carrito));
     mostrarContenidoCarrito();
   } else {
-    let productoAgregado = baseDeDatos.find(prod => prod.id == id);
+    let productoAgregado = baseDeDatos.find(produA => produA.id == id);
     carrito.push(productoAgregado);
+    productoAgregado.quantity = 1;
     localStorage.setItem("miCarrito", JSON.stringify(carrito));
     mostrarContenidoCarrito();
   }
@@ -91,18 +79,11 @@ function agregarAlCarrito(id) {
 
 function mostrarContenidoCarrito() {
   DOMcarrito.textContent = "";
-  // const quitamosDuplicados = [...new Set(carrito)];
   carrito.forEach(product => {
-  // baseDeDatos.filter((itemProduct) => {
-  //     return itemProduct.id === parseInt(product);
-  //   });
-  // const numeroUnidadesItem = carrito.reduce((total, itemId) => {
-  //     return itemId === product ? total += 1 : total;
-  // }, 0);
     const nuevoItem = document.createElement("li");
     const botonEliminar = document.createElement("button");
     nuevoItem.classList.add("itemCarrito", "list-group-item");
-    nuevoItem.textContent = `Producto: ${product.title} ${product.description} Precio x ${product.quantity} UNIDADES = $${product.unit_price*product.quantity}`;
+    nuevoItem.textContent = `${product.title} ${product.description} [Precio(u)= $${product.unit_price}] [Unidades(${product.quantity})] Subtotal = ${product.unit_price*product.quantity}`;
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
     botonEliminar.textContent = ("x");
@@ -121,9 +102,10 @@ function eliminarDelCarrito() {
     carrito = carrito.filter(e => e.id != productoQueElimino)
     localStorage.setItem("miCarrito", JSON.stringify(carrito));
     mostrarContenidoCarrito();
+    reiniciarForm();
+    $(".divForm").fadeOut(1000);
     calcularTotal();
     document.getElementById("contador-carrito").innerHTML = carrito.reduce((acc, el)=> acc + el.quantity,0);
-
 };
 
 //Función del boton generar link de Mp
@@ -146,8 +128,16 @@ if (carrito.length == 0) {
 }
 
 function mostrarForm() {
-  $(".divForm").fadeIn(1000);
+  if (carrito.length != 0){
+    $(".divForm").fadeIn(1000);
+  } else {
+    $("#modalCarritoVacio").modal("show");
+  }
 } 
+
+function reiniciarForm(){
+  document.getElementById("formulario").reset();
+  }
 
 //Función VACIAR CARRITO//
 function vaciarCarrito() {
@@ -156,8 +146,11 @@ function vaciarCarrito() {
     $("#listaCarrito");
     $("#listaCarrito").html("");
     $("#total").html("");
+    $(".datosCorrectos").fadeOut(1000);
+    $(".divForm").fadeOut(1000);
     total = 0;
     vaciarLocalStorage();
+    reiniciarForm();
     calcularTotal();
     } 
     document.getElementById("contador-carrito").innerHTML = carrito.reduce((acc, el)=> acc + el.quantity,0);
@@ -187,14 +180,16 @@ function calcularTotal() {
 //Hacemos animación con Jquery//
 function animaciones() {
   $("#divMiLogo").show(500);
-  $("#divMiLogo").animate({left:"+=100px"});
-  $(".agusCard").fadeIn(500); }
+  $("#divMiLogo").animate({left:"+=50px"});
+  $(".agusCard").fadeIn(500); 
+}
 
 //Animación items//
 function  animacionItem() {
     $(".itemCarrito").fadeIn(300)
-                  .css("background-color","rgba(95, 95, 134, 0.808)")
                   .css("color", "white")
+                  .css("border", "solid black 2px")
+                  .css("margin", "0.2rem")
                   ;}
 
 //filtramos los productos por categoría
@@ -206,25 +201,18 @@ function  animacionItem() {
   let mostrar=``;
   nuevosProductos.forEach((product) => {
   mostrar+=
-  `<div class="card mb-3 agusCard" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-lg-4">
-      <img src="${product.picture_url}" class="cardImg img-fluid rounded-start" alt="imagen-producto">
-    </div>
-    <div class="col-md-8">
+  `<div class="card col-lg-3 agusCard">
       <div class="card-body">
-        <h6 class="card-title cardTitle">${product.title}</h6>
-        <p class="card-text cardDescription">${product.description}</p>
-        <p class="card-text cardPrice">$${product.unit_price}</small></p>
+      <img src="${product.picture_url}" class="img-fluid" alt="imagen-producto">
+        <h6 class="card-title">${product.title}</h6>
+        <p class="card-text">${product.description}</p>
+        <p class="card-text">$${product.unit_price}</small></p>
         <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                 <div class="text-center"><button class="btn btn-outline-dark mt-auto agregoProd" 
-                 onclick="agregarAlCarrito('${product.id}')">Agregar al carrito</button>
-                 </div>
-            </div>
+        <div class="btn-add">
+        <button class="btn btn-outline-dark mt-auto" onclick="agregarAlCarrito('${product.id}')">Agregar al carrito</button>
+        </div>
+               
       </div>
-    </div>
-  </div>
 </div>`
   });
   $("#mainCard").html(mostrar);
@@ -260,4 +248,3 @@ fetch(APIURL,{
 })
 }
 
-console.log(carrito)

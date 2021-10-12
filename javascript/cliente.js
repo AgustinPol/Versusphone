@@ -22,7 +22,7 @@ class Cliente{
     let email = document.getElementById("email").value;
     let telefono = document.getElementById("telefono").value;
     
-    if (edad >= 18 && telefono.length == 8) {
+    if ((edad >= 18) && (telefono.length == 8) && (dni.length == 7 || dni.length == 8)) {
       let datosCliente =     
                  { nombreCompleto: nombreCompleto,
                    edad: edad,
@@ -34,6 +34,7 @@ class Cliente{
       arrayClientes.push(new Cliente(datosCliente));
       localStorage.setItem("clientes", JSON.stringify(arrayClientes));
       $("#capturaDatosCliente").modal("show");
+      $(".divForm").fadeOut(1000)
     } else {
         $(".datosIncorrectos").fadeIn(1000);
         $(".datosIncorrectos").fadeOut(1000);

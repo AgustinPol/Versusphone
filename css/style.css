@@ -3,7 +3,7 @@ body {
     background-image: linear-gradient(to right, rgba(206, 206, 228, 0.808) , rgba(0, 0, 0,0.8))!important;;
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.05rem;
     text-align: justify;
 }
 
@@ -38,7 +38,7 @@ nav ul li a {
     height: 45rem;
     margin: 2rem;
 }
-
+    
 button {
     margin: 1rem;
 }
@@ -54,6 +54,18 @@ button {
     height: 6rem;
 }
 
+#capturaDatosCliente {
+    background-image: linear-gradient(to right, rgba(120, 202, 157, 0.808) , rgba(0, 0, 0,0.8));
+}
+
+.itemCarrito{
+    background-image: linear-gradient(to right, rgba(49, 49, 49, 0.808) , rgba(0, 0, 0,0.8));
+}
+
+#modalCarritoVacio{ 
+    background-image: linear-gradient(to right, rgba(211, 124, 118, 0.808) , rgba(0, 0, 0,0.8));
+}
+
 #totalCarrito {
     margin:1rem;
     padding: 1rem;
@@ -61,7 +73,7 @@ button {
     width: 14rem;
     height: 5rem;
     border-radius: 0.2rem;
-    background-image: linear-gradient(to right, rgba(163, 11, 0, 0.808) , rgba(0, 0, 0,0.8))
+    background-image: linear-gradient(to right, rgba(202, 66, 56, 0.808) , rgba(0, 0, 0,0.8));
 }
 
 .divLogo {
@@ -71,7 +83,7 @@ button {
     color:#fff;
     border-radius: 10px;
     margin: 0.5rem;
-    margin-right: 9rem;
+    margin-right: 5rem;
     width: 20rem;
     height: 6rem;
 }
@@ -91,8 +103,13 @@ button {
     text-align: end;
 }
 
-#boton-vaciar,#btn-comprar,#boton-seguir,#boton-comprar,#btn-validar {
+#btn-comprar,#boton-seguir,#boton-comprar,#btn-validar {
     background-image: linear-gradient(to right, rgba(35, 129, 192, 0.808) , rgba(0, 0, 0,0.8));
+    color: #fff;
+}
+
+.btn-refresh,#boton-vaciar {
+    background-image: linear-gradient(to right, rgba(202, 66, 56, 0.808) , rgba(0, 0, 0,0.8));
     color: #fff;
 }
 
@@ -124,10 +141,12 @@ button {
     }
 
 .agusCard{
-    display: block;
-    margin: 1rem;
-    margin-left: 2rem;
+    width: 18rem;
+    margin: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     color: #000;
+    text-align: center;
     }
 
 .divForm {

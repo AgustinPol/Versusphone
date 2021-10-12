@@ -102,26 +102,26 @@
           <div class="divForm col-lg-6">
             <h6 class="textForm">Llena el formulario para continuar la compra</h6>
             <form id="formulario">
-              <input class="form-control" type="text" placeholder="Ingrese su nombre" id="nombre"><br>
-              <input class="form-control" type="number" placeholder="Ingrese su edad" id="edad"><br>     
+              <input class="form-control" type="text" placeholder="Ingrese su nombre y apellido" id="nombre"><br>
+              <input class="form-control" type="number" placeholder="Ingrese su edad (mayor 18)" id="edad"><br>     
               <input class="form-control" type="number" placeholder="Ingrese su dni" id="dni"><br>
               <input class="form-control" type="text" placeholder="Ingrese su dirección" id="direccion"><br>
               <input class="form-control" type="email" placeholder="Ingrese su email" id="email"><br>
-              <input class="form-control" type="number" placeholder="Ingrese su telefóno" id="telefono"><br>
+              <input class="form-control" type="number" placeholder="Ingrese su telefóno (8 caracteres)" id="telefono"><br>
+              <input type="button" class="btn btn-outline-dark btn-refresh" value="Refrescar" onclick="reiniciarForm();">
               <button id="btn-validar" class="btn btn-outline-dark" type="button" onclick="validarCliente()">Validar Datos</button>
             </form>
 
-            <div class="datosCorrectos">
-              <h5>Tus datos son válidos. A continuación te dejamos el link de pago!</h5>
-              <button id="btn-comprar" class="btn btn-outline-dark">Ir al link de pago</button>
-            </div>
-
             <div class="datosIncorrectos">
-              <h5>Tus datos son incorrectos. Vuelve a intentarlo.</h5>
+              <h5>Tus datos son incorrectos/incompletos. Vuelve a intentarlo.</h5>
             </div>
 
         
           </div>
+            <div class="datosCorrectos">
+              <h5>Tus datos son válidos. A continuación te dejamos el link de pago!</h5>
+              <button id="btn-comprar" class="btn btn-outline-dark">Ir al link de pago</button>
+            </div>
           
          </div>
       
@@ -161,7 +161,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5> Ya tenemos sus datos para el envío! Se generó el link de pago!</h5>
+        <h5> Ya tenemos sus datos para el envío y se generó el link de pago!</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
