@@ -43,6 +43,10 @@ button {
     margin: 1rem;
 }
 
+.textForm {
+    margin-left: 1rem;
+}
+
 .itemList {
     display: none;
     font-size: 1rem;

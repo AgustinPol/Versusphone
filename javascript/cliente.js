@@ -31,7 +31,7 @@ class Cliente{
                    email: email,
                    telefono: telefono}
       $(".datosCorrectos").show();
-      arrayClientes.push(new Cliente(nombreCompleto, edad, dni, direccion, email, telefono));
+      arrayClientes.push(new Cliente(datosCliente));
       localStorage.setItem("clientes", JSON.stringify(arrayClientes));
       $("#capturaDatosCliente").modal("show");
     } else {
