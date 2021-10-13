@@ -86,7 +86,7 @@ function mostrarContenidoCarrito() {
     const nuevoItem = document.createElement("li");
     const botonEliminar = document.createElement("button");
     nuevoItem.classList.add("itemCarrito", "list-group-item");
-    nuevoItem.textContent = `${product.title} ${product.description} [Precio(u)= $${product.unit_price}] [Unidades(${product.quantity})] Subtotal = $${product.unit_price*product.quantity}`;
+    nuevoItem.textContent = `${product.title} ${product.description} [Precio(u)= $${product.unit_price}] [${product.quantity} Unidades] Subtotal = $${product.unit_price*product.quantity}`;
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
     botonEliminar.textContent = ("x");
