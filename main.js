@@ -1,3 +1,4 @@
+//ARRAY BASE DE DATOS DE PRODUCTOS
 const baseDeDatos = [];
 
 //CONSTRUCTOR DE PRODUCTOS//
@@ -36,6 +37,7 @@ class Producto{
   const producto10 = new Producto("10", "Airpods Max", "Apple", "images/airpods-max-azul.webp", "airpods", 1, "ARS", 114999);
   baseDeDatos.push(producto10);
 
+  //RENDERIZO MIS CARDS
 $(document).ready(renderizarProductos());
 
 animaciones();
@@ -44,7 +46,7 @@ let carrito = [];
 let total = 0; 
 let subtotal = 0;
 
-
+//DECLARO EVENTOS Y CONTENEDORES DOM
 const DOMcarrito = document.getElementById("listaCarrito")
 const DOMtotal = document.getElementById("total");
 const eventComprar = $("#btn-comprar").on("click", btnComprar);
@@ -53,13 +55,14 @@ const eventModal = $("#carritoModalBoton").on("click", modalCarrito);
 const eventForm = $("#boton-comprar").on("click", mostrarForm);
 
 
-
+//VALIDACIÓN LOCALSTORAGE
   if (localStorage.getItem("miCarrito") != null) {
     carrito = JSON.parse(localStorage.getItem("miCarrito"));
     mostrarContenidoCarrito();
     document.getElementById("contador-carrito").innerHTML = carrito.reduce((acc, el)=> acc + el.quantity,0);
   }
 
+//FUNCIONES  
 function agregarAlCarrito(id) {
   let productoRepetido = carrito.find(produR => produR.id == id);
   if (productoRepetido) {
@@ -83,7 +86,7 @@ function mostrarContenidoCarrito() {
     const nuevoItem = document.createElement("li");
     const botonEliminar = document.createElement("button");
     nuevoItem.classList.add("itemCarrito", "list-group-item");
-    nuevoItem.textContent = `${product.title} ${product.description} [Precio(u)= $${product.unit_price}] [Unidades(${product.quantity})] Subtotal = ${product.unit_price*product.quantity}`;
+    nuevoItem.textContent = `${product.title} ${product.description} [Precio(u)= $${product.unit_price}] [Unidades(${product.quantity})] Subtotal = $${product.unit_price*product.quantity}`;
     botonEliminar.classList.add("btn", "btn-secundary", "boton-eliminar", "btn-outline-dark");
     botonEliminar.setAttribute("type", "button");
     botonEliminar.textContent = ("x");
@@ -96,7 +99,6 @@ function mostrarContenidoCarrito() {
   });
   }
 
-// Función ELIMINAR DEL CARRITO//
 function eliminarDelCarrito() {
     let productoQueElimino = this.getAttribute('productoId')
     carrito = carrito.filter(e => e.id != productoQueElimino)
@@ -108,7 +110,7 @@ function eliminarDelCarrito() {
     document.getElementById("contador-carrito").innerHTML = carrito.reduce((acc, el)=> acc + el.quantity,0);
 };
 
-//Función del boton generar link de Mp
+//GENERA EL LINK DE MP
 function btnComprar() {
   if (carrito.length === 0) {
     $("#modalCarritoVacio").modal("show");
@@ -117,7 +119,6 @@ function btnComprar() {
   }
 }
 
-//function para mostrar modal
 function modalCarrito(e) {
   e.preventDefault();
 if (carrito.length == 0) {
@@ -139,7 +140,6 @@ function reiniciarForm(){
   document.getElementById("formulario").reset();
   }
 
-//Función VACIAR CARRITO//
 function vaciarCarrito() {
   if (carrito.length > 0) {
     carrito.splice(0, carrito.length);
@@ -157,12 +157,10 @@ function vaciarCarrito() {
 
 }
 
-// Función VaciarLocalStorage
 function vaciarLocalStorage(){
   localStorage.clear();
 }
 
-//Función para Calcular el total//
 function calcularTotal() {
   JSON.parse(localStorage.getItem("miCarrito"));
   if (carrito.length == 0) {

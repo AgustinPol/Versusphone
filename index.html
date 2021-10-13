@@ -23,7 +23,6 @@
 <header>
   <div class="container-xl">
     <div class="row">
-      <!--Divido el Header en dos columnas-->
         <div class="col-lg-6">
             <nav class="navbar navbar-expand-lg">
               <div class="container-fluid">
@@ -45,7 +44,7 @@
                 </div>
               </div>
             </nav>
-
+            <!--Contador Carrito-->
             <div>
               <form class="d-flex">
                 <button id="carritoModalBoton" class="btn btn-outline-dark carritoLogo" type="button" data-bs-toggle="modal">
@@ -66,12 +65,10 @@
   </div>    
 </header>
 
-<!-- FIN DE HEADER Y COMIENZO DE MAIN -->
-
-<!--ACA VAN LAS CARDS-->
+<!--CARDS-->
 <div class="container-xl">
   <div class="row">
-    <main id="mainCard" class="col-lg-12 row"></main>
+    <main id="mainCard" class="col-xl-12 row"></main>
   </div>
 </div>
 
@@ -85,20 +82,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-           <!--ACA VA EL CARRITO-->
+           <!--CARRITO-->
     <div class="divCarrito container-lg">
       <div class="row">
 
         <div class="col-lg-6">
           <ul id="listaCarrito" class="list-group"></ul>
-          <!-- Precio total -->
+          <!--Total Compra -->
           <div>
-           <p id="totalCarrito" class="text-right">Total: <span id="total"></span> $(ars);</p>
+           <p id="totalCarrito" class="text-right">Total: $ <span id="total"></span> (ars);</p>
           </div>         
           <button id="boton-vaciar" class="btn btn-outline-dark">Vaciar Carrito</button>
           <button id="boton-comprar" class="btn btn-outline-dark">Comprar</button>
         </div>
-      
+          <!--Formulario-->
           <div class="divForm col-lg-6">
             <h6 class="textForm">Llena el formulario para continuar la compra</h6>
             <form id="formulario">
@@ -170,7 +167,7 @@
   </div>
 </div>
 
-
+<!--Footer-->
 <footer>
   <div class="container-xl">
     <div class="row">
