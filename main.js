@@ -106,6 +106,7 @@ function eliminarDelCarrito() {
     mostrarContenidoCarrito();
     reiniciarForm();
     $(".divForm").fadeOut(1000);
+    $(".datosCorrectos").fadeOut(1000);
     calcularTotal();
     document.getElementById("contador-carrito").innerHTML = carrito.reduce((acc, el)=> acc + el.quantity,0);
 };
