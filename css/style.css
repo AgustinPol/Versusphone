@@ -47,6 +47,11 @@ button {
     margin-left: 1rem;
 }
 
+.img-carrito {
+    width: 2rem;
+    height: 2rem;
+}
+
 .itemList {
     display: none;
     font-size: 1rem;
