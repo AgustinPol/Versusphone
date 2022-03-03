@@ -63,7 +63,7 @@ const eventForm = $("#boton-comprar").on("click", mostrarForm);
   }
 
 //FUNCIONES  
-function agregarAlCarrito(id) {
+const agregarAlCarrito = (id) => {
   let productoRepetido = carrito.find(produR => produR.id == id);
   if (productoRepetido) {
     productoRepetido.quantity = productoRepetido.quantity + 1;
@@ -80,7 +80,7 @@ function agregarAlCarrito(id) {
 
 }
 
-function mostrarContenidoCarrito() {
+const mostrarContenidoCarrito = () => {
   DOMcarrito.textContent = "";
   carrito.forEach(product => {
     const nuevoItem = document.createElement("li");
@@ -99,7 +99,7 @@ function mostrarContenidoCarrito() {
   });
   }
 
-function eliminarDelCarrito() {
+const eliminarDelCarrito = () => {
     let productoQueElimino = this.getAttribute('productoId')
     carrito = carrito.filter(e => e.id != productoQueElimino)
     localStorage.setItem("miCarrito", JSON.stringify(carrito));
@@ -112,7 +112,7 @@ function eliminarDelCarrito() {
 };
 
 //GENERA EL LINK DE MP
-function btnComprar() {
+const btnComprar = () => {
   if (carrito.length === 0) {
     $("#modalCarritoVacio").modal("show");
   } else {
@@ -120,7 +120,7 @@ function btnComprar() {
   }
 }
 
-function modalCarrito(e) {
+const modalCarrito = (e) => {
   e.preventDefault();
 if (carrito.length == 0) {
   $("#modalCarritoVacio").modal("show");
@@ -129,7 +129,7 @@ if (carrito.length == 0) {
 }
 }
 
-function mostrarForm() {
+const mostrarForm = () => {
   if (carrito.length != 0){
     $(".divForm").fadeIn(1000);
   } else {
@@ -137,11 +137,11 @@ function mostrarForm() {
   }
 } 
 
-function reiniciarForm(){
+const reiniciarForm = () => { 
   document.getElementById("formulario").reset();
   }
 
-function vaciarCarrito() {
+const vaciarCarrito = () => {
   if (carrito.length > 0) {
     carrito.splice(0, carrito.length);
     $("#listaCarrito");
@@ -158,11 +158,11 @@ function vaciarCarrito() {
 
 }
 
-function vaciarLocalStorage(){
+const vaciarLocalStorage = () => {
   localStorage.clear();
 }
 
-function calcularTotal() {
+const calcularTotal = () => {
   JSON.parse(localStorage.getItem("miCarrito"));
   if (carrito.length == 0) {
     DOMtotal.textContent = "0";
@@ -177,14 +177,14 @@ function calcularTotal() {
 }
 
 //Hacemos animación con Jquery//
-function animaciones() {
+const animaciones = () => {
   $("#divMiLogo").show(500);
   $("#divMiLogo").animate({left:"+=50px"});
   $(".agusCard").fadeIn(500); 
 }
 
 //Animación items//
-function  animacionItem() {
+const animacionItem = () => {
     $(".itemCarrito").fadeIn(300)
                   .css("color", "white")
                   .css("border", "solid black 2px")
@@ -192,7 +192,7 @@ function  animacionItem() {
                   ;}
 
 //filtramos los productos por categoría
- function renderizarProductos(filtro = 'default') {
+ const renderizarProductos = (filtro = "default") => {
   let nuevosProductos = (filtro !== "default") ? 
   baseDeDatos.filter(product => product.category_id == filtro) :
   baseDeDatos;
@@ -218,9 +218,7 @@ function  animacionItem() {
   animaciones();
 }
 //Función Del Fetch de la Api de Mercado Pago
-function linkDePago() {
-
-  
+const linkDePago = () => {
 const elementosMpParcial = carrito.map(producto =>{
   return {
     "title" : producto.title,
