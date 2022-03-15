@@ -94,12 +94,12 @@
           <div class="divForm col-lg-6">
             <h6 class="textForm">Llena el formulario para continuar la compra</h6>
             <form id="formulario">
-              <input class="form-control" type="text" placeholder="Ingrese su nombre y apellido" id="nombre"><br>
-              <input class="form-control" type="number" placeholder="Ingrese su edad (mayor 18)" id="edad"><br>     
-              <input class="form-control" type="number" placeholder="Ingrese su dni" id="dni"><br>
-              <input class="form-control" type="text" placeholder="Ingrese su dirección" id="direccion"><br>
-              <input class="form-control" type="email" placeholder="Ingrese su email" id="email"><br>
-              <input class="form-control" type="number" placeholder="Ingrese su telefóno (8 caracteres)" id="telefono"><br>
+              <input class="form-control" type="text" placeholder="Ingrese su nombre y apellido" id="nombre" required><br>
+              <input class="form-control" type="number" placeholder="Ingrese su edad (mayor 18)" id="edad" required><br>     
+              <input class="form-control" type="number" placeholder="Ingrese su dni" id="dni" required><br>
+              <input class="form-control" type="text" placeholder="Ingrese su dirección" id="direccion" required><br>
+              <input class="form-control" type="email" placeholder="Ingrese su email" id="email" required><br>
+              <input class="form-control" type="number" placeholder="Ingrese su telefóno (8 caracteres)" id="telefono" required><br>
               <input type="button" class="btn btn-outline-dark btn-refresh" value="Refrescar" onclick="reiniciarForm();">
               <button id="btn-validar" class="btn btn-outline-dark" type="button" onclick="validarCliente()">Validar Datos</button>
             </form>

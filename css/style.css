@@ -1,6 +1,6 @@
 /*TAGS-DEFAULT*/
 body {
-    background-image: linear-gradient(to right, rgba(206, 206, 228, 0.808) , rgba(0, 0, 0,0.8))!important;;
+    /* background-image: linear-gradient(to right, rgba(206, 206, 228, 0.808) , rgba(0, 0, 0,0.8))!important;; */
     color: #fff;
     font-family: 'Lucida Sans', sans-serif;
     letter-spacing: 0.05rem;
@@ -152,6 +152,8 @@ button {
     margin-bottom: 1.5rem;
     color: #000;
     text-align: center;
+    border:solid;
+    box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem;
     }
 
 .divForm {
