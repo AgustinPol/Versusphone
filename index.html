@@ -8,14 +8,16 @@
     <!--Title-->
     <title>VersusPhone</title>
     <!--CDN JQuery-->
-    <script src="javascript/jquery.js" defer></script>
+    <script src="librerias/jquery.js" defer></script>
     <!--Mis Estilos-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <!--Mis Scripts-->
-    <script src="javascript/cliente.js" defer></script>
-    <script src="main.js" defer></script>
-    <script src="javascript/bootstrap.bundle.min.js" defer></script>
+    <script src="scripts/cliente.js" defer></script>
+    <script src="scripts/productos.js" defer></script>
+    <script src="scripts/funciones.js" defer></script>
+    <script src="scripts/validaciones.js" defer></script>
+    <script src="librerias/bootstrap.bundle.min.js" defer></script>
 </head>
 
 <body>
@@ -39,6 +41,9 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link btn-outline-dark" href="#" onclick="renderizarProductos('airpods')">Airpods</a>
+                    </li>
+                    <li>
+                      <a class="nav-link btn-outline-dark" href="#foot">Info</a>
                     </li>
                   </ul>
                 </div>
@@ -163,7 +168,7 @@
 </div>
 
 <!--Footer-->
-<footer>
+<footer id="foot">
   <div class="container-xl">
     <div class="row">
       <div class="divCopiright col-lg-6">
