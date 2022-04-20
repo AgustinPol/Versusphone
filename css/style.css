@@ -208,3 +208,13 @@ background-color: black;}
 .navbar-toggler-icon {
     background-color: #fff;
 }
+
+@media (max-width: 768px) {
+    .cardsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        position: relative;
+    }
+}
