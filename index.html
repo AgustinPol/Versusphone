@@ -28,12 +28,6 @@
 <body>
 <!--COMIENZA HEADER-->  
 <header>
-  <div class="container">
-    <div class="row">
-        <div class="cabecera">
-            <h2>Versusphone</h2>
-        </div>
-        <div class="col-lg-6">
             <nav class="navbar navbar-expand-lg">
               <div class="container-fluid">
                 <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,22 +50,14 @@
                   </ul> 
                 </div>
               </div>
-                <!--Contador Carrito-->
-              <div class="col-lg-6">
-                <form class="d-flex">
-                  <button id="carritoModalBoton" class="btn btn-success" type="button" data-bs-toggle="modal">
-                      <i class="bi-cart-fill me-2"></i>
-                      <i id="iconoCarrito" class="fa-solid fa-cart-arrow-down fa-2x"></i>
-                      <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                  </button>
-                </form>
-              </div>
-            </nav>
-          
-        </div>
-             
-    </div>
-  </div>    
+            </nav>  
+            <form class="d-flex">
+              <button id="carritoModalBoton" class="btn btn-success" type="button" data-bs-toggle="modal">
+                  <i class="bi-cart-fill me-2"></i>
+                  <i id="iconoCarrito" class="fa-solid fa-cart-arrow-down fa-2x"></i>
+                  <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+              </button>
+            </form>
 </header>
 
 <!--CARDS-->
@@ -179,22 +165,21 @@
 
 <!--Footer-->
 <footer id="foot" class="footer">
+
+      <div class="divInstagram">
+        <a target="_blank" href="https://www.instagram.com/?hl=es">
+          <i class="fa-brands fa-instagram-square fa-4x"></i>
+        </a>
+      </div>
   
       <div class="divCopiright">
         <h4>© VersusPhone</h4>
         <h4>Tienda Online</h4>
         <h4>Página diseñada por Agustín Pol</h4>
       </div>
-    
-      <div class="divInstagram">
-        <a target="_blank" href="https://www.instagram.com/?hl=es">
-          <i class="fa-brands fa-instagram-square fa-4x"></i>
-        </a>
-      </div>
 
-      <div class="btn-subir">
-        <a class="text-light" href="#arriba">Volver arriba</a>
-      </div>
+      <a class="text-light btn-subir" href="#arriba">Volver arriba</a>
+     
 </footer>
 
 </body>

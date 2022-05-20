@@ -7,14 +7,16 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
 
 nav ul li a {
-    color: #fff!important;
     border-radius: 5px;
 }
     
-
 .navbar-toggler-icon {
     border:2px solid #fff;
     border-radius: 2px;

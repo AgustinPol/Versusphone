@@ -8,9 +8,9 @@
 }
 
 .divInstagram {
-    width: 30rem;
-    height: 10rem;
-    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -20,8 +20,23 @@
 }
 
 .divCopiright {
-    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 10rem;
-    padding: 2rem;
-    text-align: end;
+    text-align: center;
+}
+
+.btn-subir {
+    background-color: rgba(35, 129, 192, 0.808);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    height: 5rem;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem;
 }

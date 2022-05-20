@@ -1,9 +1,26 @@
 @media (max-width: 768px) {
     .cardsGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     header {
         position: relative;
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: auto;
+    }
+
+    .footer >* {
+        margin: 1rem;
+    }
+}
+
+@media (max-width:480px) {
+    .cardsGrid {
+        grid-template-columns: 1fr;
     }
 }
