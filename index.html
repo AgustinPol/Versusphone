@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/df72427fa9.js" crossorigin="anonymous"></script>
     <!--Mis Scripts-->
@@ -59,9 +59,9 @@
                 <!--Contador Carrito-->
               <div class="col-lg-6">
                 <form class="d-flex">
-                  <button id="carritoModalBoton" class="btn btn-success botonesHeader" type="button" data-bs-toggle="modal">
-                      <i class="bi-cart-fill me-1"></i>
-                      <img class="img-carrito" src="images/carrito1.png" alt="img-carro">
+                  <button id="carritoModalBoton" class="btn btn-success" type="button" data-bs-toggle="modal">
+                      <i class="bi-cart-fill me-2"></i>
+                      <i id="iconoCarrito" class="fa-solid fa-cart-arrow-down fa-2x"></i>
                       <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                   </button>
                 </form>
@@ -102,8 +102,8 @@
           <div>
            <p id="totalCarrito" class="text-right">Total: $ <span id="total"></span> (ars);</p>
           </div>         
-          <button id="boton-vaciar" class="btn btn-outline-dark">Vaciar Carrito</button>
-          <button id="btn-positivo" class="btn btn-outline-dark">Comprar</button>
+          <button id="boton-vaciar" class="btn btn-danger">Vaciar Carrito</button>
+          <button id="btn-comprar" class="btn btn-success">Comprar</button>
         </div>
           <!--Formulario-->
           <div class="divForm col-lg-6">
@@ -115,8 +115,8 @@
               <input class="form-control" type="text" placeholder="Ingrese su dirección" id="direccion" required><br>
               <input class="form-control" type="email" placeholder="Ingrese su email" id="email" required><br>
               <input class="form-control" type="number" placeholder="Ingrese su telefóno (8 caracteres)" id="telefono" required><br>
-              <input type="button" class="btn btn-outline-dark btn-refresh" value="Refrescar" onclick="reiniciarForm();">
-              <button id="btn-positivo" class="btn btn-outline-dark" type="button" onclick="validarCliente()">Validar Datos</button>
+              <input type="button" class="btn btn-danger" value="Refrescar" onclick="reiniciarForm();">
+              <button id="btn-validar" class="btn btn-success" type="button" onclick="validarCliente()">Validar Datos</button>
             </form>
 
             <div class="datosIncorrectos">
@@ -127,7 +127,7 @@
           </div>
             <div class="datosCorrectos">
               <h5>Tus datos son válidos. A continuación te dejamos el link de pago!</h5>
-              <button id="btn-positivo" class="btn btn-outline-dark">Ir al link de pago</button>
+              <button id="btn-formu" class="btn btn-success">Ir al link de pago</button>
             </div>
           
          </div>

@@ -1,0 +1,54 @@
+.divCarrito {
+    background-color: #fff;
+    color: black;
+    width: 70rem;
+    height: 45rem;
+    margin: 2rem;
+}
+    
+.img-carrito {
+    width: 2rem;
+    height: 2rem;
+}
+
+.itemList {
+    display: none;
+    font-size: 1rem;
+    width: 26rem;
+    height: 6rem;
+}
+
+.itemCarrito{
+    background-image: linear-gradient(to right, rgba(49, 49, 49, 0.808) , rgba(0, 0, 0,0.8));
+}
+
+#totalCarrito {
+    margin:1rem;
+    padding: 1rem;
+    color: #fff;
+    width: 14rem;
+    height: 5rem;
+    border-radius: 0.2rem;
+    background-image: linear-gradient(to right, rgba(202, 66, 56, 0.808) , rgba(0, 0, 0,0.8));
+}
+
+.divForm {
+    display: none;
+}    
+
+.datosCorrectos,.datosIncorrectos {
+    display: none;
+}
+
+#capturaDatosCliente {
+    background-image: linear-gradient(to right, rgba(120, 202, 157, 0.808) , rgba(0, 0, 0,0.8));
+}
+
+
+#modalCarritoVacio{ 
+    background-image: linear-gradient(to right, rgba(211, 124, 118, 0.808) , rgba(0, 0, 0,0.8));
+}
+
+.textForm {
+    margin-left: 1rem;
+}

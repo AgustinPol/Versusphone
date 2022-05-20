@@ -12,10 +12,10 @@
   //DECLARO EVENTOS Y CONTENEDORES DOM
   const DOMcarrito = document.getElementById("listaCarrito")
   const DOMtotal = document.getElementById("total");
-  const eventComprar = $("#btn-comprar").on("click", btnComprar);
+  const eventComprar = $("#btn-formu").on("click", btnComprar);
   const eventVaciar = $("#boton-vaciar").on("click", vaciarCarrito);
   const eventModal = $("#carritoModalBoton").on("click", modalCarrito);
-  const eventForm = $("#boton-comprar").on("click", mostrarForm);
+  const eventForm = $("#btn-comprar").on("click", mostrarForm);
   
   
   //VALIDACIÓN LOCALSTORAGE

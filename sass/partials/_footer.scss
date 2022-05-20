@@ -1,0 +1,27 @@
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    background-color: #000;
+    height: 10rem;
+}
+
+.divInstagram {
+    width: 30rem;
+    height: 10rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.divInstagram a i {
+    text-decoration: none;
+    color: white;
+}
+
+.divCopiright {
+    width: 30rem;
+    height: 10rem;
+    padding: 2rem;
+    text-align: end;
+}

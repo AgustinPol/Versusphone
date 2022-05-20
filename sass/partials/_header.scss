@@ -1,0 +1,40 @@
+/* HEADER */
+
+header {
+    font-size: 25px;
+    width: 100%;
+    background-color: #000;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav ul li a {
+    color: #fff!important;
+    border-radius: 5px;
+}
+    
+
+.navbar-toggler-icon {
+    border:2px solid #fff;
+    border-radius: 2px;
+}
+
+/*CLASS CARRITO*/    
+.carrito {
+    display: inline-block;
+    margin: auto;
+}
+
+.cabecera {
+    display: flex;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.2rem;
+    height: 6rem;
+    width: auto;
+    color:#000;
+    margin: 1rem;
+}
