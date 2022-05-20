@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/df72427fa9.js" crossorigin="anonymous"></script>
     <!--Mis Scripts-->
     <script src="scripts/cliente.js" defer></script>
     <script src="scripts/productos.js" defer></script>
@@ -34,7 +36,7 @@
         <div class="col-lg-6">
             <nav class="navbar navbar-expand-lg">
               <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -73,11 +75,12 @@
 </header>
 
 <!--CARDS-->
-<div>
-  <div>
-    <main class="cardsGrid" id="mainCard"></main>
-  </div>
-</div>
+  
+    <main id="arriba">
+      <div class="cardsGrid" id="mainCard">
+      </div>
+    </main>
+  
 
 
 <!--MODAL CARRITO LLENO-->
@@ -100,7 +103,7 @@
            <p id="totalCarrito" class="text-right">Total: $ <span id="total"></span> (ars);</p>
           </div>         
           <button id="boton-vaciar" class="btn btn-outline-dark">Vaciar Carrito</button>
-          <button id="boton-comprar" class="btn btn-outline-dark">Comprar</button>
+          <button id="btn-positivo" class="btn btn-outline-dark">Comprar</button>
         </div>
           <!--Formulario-->
           <div class="divForm col-lg-6">
@@ -113,7 +116,7 @@
               <input class="form-control" type="email" placeholder="Ingrese su email" id="email" required><br>
               <input class="form-control" type="number" placeholder="Ingrese su telefóno (8 caracteres)" id="telefono" required><br>
               <input type="button" class="btn btn-outline-dark btn-refresh" value="Refrescar" onclick="reiniciarForm();">
-              <button id="btn-validar" class="btn btn-outline-dark" type="button" onclick="validarCliente()">Validar Datos</button>
+              <button id="btn-positivo" class="btn btn-outline-dark" type="button" onclick="validarCliente()">Validar Datos</button>
             </form>
 
             <div class="datosIncorrectos">
@@ -124,7 +127,7 @@
           </div>
             <div class="datosCorrectos">
               <h5>Tus datos son válidos. A continuación te dejamos el link de pago!</h5>
-              <button id="btn-comprar" class="btn btn-outline-dark">Ir al link de pago</button>
+              <button id="btn-positivo" class="btn btn-outline-dark">Ir al link de pago</button>
             </div>
           
          </div>
@@ -132,7 +135,7 @@
         </div>
        </div>
       <div class="modal-footer">
-        <button type="button" id="boton-seguir" class="btn btn-outline-dark" data-bs-dismiss="modal">Volver al sitio</button>
+        <button type="button" id="boton-positivo" class="btn btn-outline-dark" data-bs-dismiss="modal">Volver al sitio</button>
       </div>
     </div>
   </div>
@@ -175,21 +178,23 @@
 </div>
 
 <!--Footer-->
-<footer id="foot">
-  <div class="container-xl">
-    <div class="row">
-      <div class="divCopiright col-lg-6">
-        <h4>© - VersusPhone - Tienda Online - 2021 - Pol Agustín</h4>
+<footer id="foot" class="footer">
+  
+      <div class="divCopiright">
+        <h4>© VersusPhone</h4>
+        <h4>Tienda Online</h4>
+        <h4>Página diseñada por Agustín Pol</h4>
       </div>
     
-      <div class="divInstagram col-lg-6">
-        <a href="https://www.instagram.com/?hl=es">
-          <img class="imgInsta" src="images/instagramimg.png" alt="instagramIcono">
+      <div class="divInstagram">
+        <a target="_blank" href="https://www.instagram.com/?hl=es">
+          <i class="fa-brands fa-instagram-square fa-4x"></i>
         </a>
       </div>
-    </div>
-  </div>
- 
+
+      <div class="btn-subir">
+        <a class="text-light" href="#arriba">Volver arriba</a>
+      </div>
 </footer>
 
 </body>

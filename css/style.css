@@ -26,10 +26,6 @@ a {
     text-transform: none;
 }
 
-footer {
-background-color: #000;
-}
-
 form {
     margin: 1rem;
 }
@@ -82,6 +78,15 @@ button {
     height: 6rem;
 }
 
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    background-color: #000;
+    height: 10rem;
+}
+
 #capturaDatosCliente {
     background-image: linear-gradient(to right, rgba(120, 202, 157, 0.808) , rgba(0, 0, 0,0.8));
 }
@@ -111,6 +116,11 @@ button {
     text-align: center;
 }
 
+.divInstagram a i {
+    text-decoration: none;
+    color: rgba(35, 129, 192, 0.808);
+}
+
 .divCopiright {
     width: 30rem;
     height: 10rem;
@@ -118,9 +128,25 @@ button {
     text-align: end;
 }
 
-#btn-comprar,#boton-seguir,#boton-comprar,#btn-validar {
+#btn-positivo {
     background-image: linear-gradient(to right, rgba(35, 129, 192, 0.808) , rgba(0, 0, 0,0.8));
     color: #fff;
+}
+
+.btn-subir {
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(35, 129, 192, 0.808);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+
+.btn-subir a {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 .btn-refresh,#boton-vaciar {
@@ -177,36 +203,21 @@ button {
     display: inline-block;
     margin: auto;
 }
-/*IMG DEL INSTAGRAM*/
-.imgInsta {
-    display: inline-block;
-    width: 3rem;
-    height: 3rem;
-    margin: auto;
-}
-
-.imgInsta:hover {
-    background: rgba(255, 255, 255, 0.377);
-    border-radius: 5px;
-}
 
 /* HEADER */
 
 header {
     font-size: 25px;
     width: 100%;
-    height: 100%;
     background-color: #000;
     position: sticky;
     top: 0;
     z-index: 10;
     }
 
-.navbar-toggler {
-background-color: black;}
-
 .navbar-toggler-icon {
-    background-color: #fff;
+    border:2px solid #fff;
+    border-radius: 2px;
 }
 
 @media (max-width: 768px) {
